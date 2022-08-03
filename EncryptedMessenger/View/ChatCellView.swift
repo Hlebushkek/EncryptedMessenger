@@ -13,16 +13,11 @@ class ChatCellView: UITableViewCell {
     @IBOutlet weak var chatName: UILabel!
     @IBOutlet weak var chatLastMessage: UILabel!
     
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-    
-    func setupCell(info: (String, String, String)) {
+    func setupCell(chat: Chat) {
         chatImage.layer.cornerRadius = chatImage.bounds.width / 2
-        chatImage.image = UIImage(systemName: info.0)
+        chatImage.image = UIImage(systemName: "pencil.circle.fill")
         
-        chatName.text = info.1
-        chatLastMessage.text = info.2
+        chatName.text = chat.name
+        chatLastMessage.text = "Last chat message"
     }
 }

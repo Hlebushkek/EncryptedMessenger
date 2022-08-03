@@ -1,13 +1,13 @@
 //
-//  ViewController.swift
+//  ProfileViewController.swift
 //  EncryptedMessenger
 //
-//  Created by Gleb Sobolevsky on 17.04.2022.
+//  Created by Gleb Sobolevsky on 02.08.2022.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,4 +16,3 @@ class ViewController: UIViewController {
 
 
 }
-
