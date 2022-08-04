@@ -22,7 +22,7 @@ class ChatViewController: UIViewController {
         Message(content: "Message123"),
         Message(content: "Message123 Message123 Message123"),
         Message(content: "Message123"),
-        Message(content: "Message123 Message123"),
+        Message(content: "Message123"),
         Message(content: "Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123"),
         Message(content: "Message123 Message123 Message123"),
         Message(content: "Message123"),
@@ -41,6 +41,7 @@ class ChatViewController: UIViewController {
         setupChatInfo()
         
         tableView.register(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "messageCell")
+        tableView.register(UINib(nibName: "UserMessageTableViewCell", bundle: nil), forCellReuseIdentifier: "usermessageCell")
         
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.delegate = self
@@ -86,8 +87,9 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") as? MessageTableViewCell else { return UITableViewCell()}
+        let isUser = Bool.random()
+        let identifier = isUser ? "usermessageCell" : "messageCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? MessageCell else { return UITableViewCell()}
         
         cell.setupCell(with: messages[indexPath.row])
         cell.transform = CGAffineTransform(rotationAngle: (-.pi))

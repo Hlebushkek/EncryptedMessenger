@@ -1,5 +1,5 @@
 //
-//  MessageTableViewCell.swift
+//  UserMessageTableViewCell.swift
 //  EncryptedMessenger
 //
 //  Created by Gleb Sobolevsky on 04.08.2022.
@@ -7,9 +7,8 @@
 
 import UIKit
 
-class MessageTableViewCell: UITableViewCell, MessageCell {
+class UserMessageTableViewCell: UITableViewCell, MessageCell {
 
-    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var messageContentView: GradientView!
     @IBOutlet weak var messageLabel: UILabel!
     
@@ -18,16 +17,13 @@ class MessageTableViewCell: UITableViewCell, MessageCell {
     public func setupCell(with message: Message) {
         self.message = message
 
-        userImageView.image = UIImage(systemName: "person.circle")
-        userImageView.layer.cornerRadius = userImageView.bounds.width / 2
-
         messageLabel.text = message.content
         
-        setupContetnView()
+        setupGradient()
     }
     
-    private func setupContetnView() {
-        messageContentView.colors = [UIColor.systemGray6, UIColor.systemGray6]
+    private func setupGradient() {
+        messageContentView.colors = [UIColor(named: "UserMessageFirst")!, UIColor(named: "UserMessageSecond")!]
         messageContentView.startPoint = CGPoint(x: 1, y: 1)
         messageContentView.endPoint = CGPoint(x: 0, y: 0)
         messageContentView.layer.cornerRadius = 8

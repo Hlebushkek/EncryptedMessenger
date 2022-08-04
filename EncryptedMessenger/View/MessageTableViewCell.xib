@@ -24,10 +24,10 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="utn-4t-d81" customClass="GradientView" customModule="EncryptedMessenger" customModuleProvider="target">
-                        <rect key="frame" x="40" y="4" width="216" height="36"/>
+                        <rect key="frame" x="40" y="4" width="53.5" height="36"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUF-cI-l0x">
-                                <rect key="frame" x="8" y="4" width="200" height="28"/>
+                                <rect key="frame" x="8" y="4" width="37.5" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -43,10 +43,11 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="utn-4t-d81" secondAttribute="trailing" constant="256" id="Jim-tU-ir4"/>
                     <constraint firstItem="utn-4t-d81" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="Sik-Hf-r9I"/>
                     <constraint firstItem="utn-4t-d81" firstAttribute="leading" secondItem="WiI-dq-B63" secondAttribute="trailing" constant="4" id="Uc8-FV-jcy"/>
                     <constraint firstAttribute="bottom" secondItem="utn-4t-d81" secondAttribute="bottom" constant="4" id="XH5-EW-ArI"/>
-                    <constraint firstAttribute="trailing" secondItem="utn-4t-d81" secondAttribute="trailing" constant="64" id="Zvc-rw-1jq"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="utn-4t-d81" secondAttribute="trailing" constant="40" id="Zvc-rw-1jq"/>
                     <constraint firstItem="WiI-dq-B63" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="eMP-0o-YSI"/>
                     <constraint firstAttribute="bottom" secondItem="WiI-dq-B63" secondAttribute="bottom" constant="4" id="ndo-eZ-FeC"/>
                     <constraint firstItem="WiI-dq-B63" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="uSL-4V-n52"/>
