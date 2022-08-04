@@ -28,7 +28,7 @@
         <scene sceneID="8jz-ge-kte">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G43-GA-mg9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" id="Y8M-Gt-0Nq"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.fill" catalog="system" id="Y8M-Gt-0Nq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EhV-TP-cns">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -43,15 +43,16 @@
             </objects>
             <point key="canvasLocation" x="906" y="-356"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="jwq-A5-3BF">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="dYE-Xp-cWi" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="dYE-Xp-cWi" customClass="MainTabBarController" customModule="EncryptedMessenger" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7qV-fn-JKe">
+                    <tabBar key="tabBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7qV-fn-JKe">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <tabBarAppearance key="standardAppearance" backgroundEffect="systemThickMaterial"/>
+                        <tabBarAppearance key="scrollEdgeAppearance" backgroundEffect="systemThickMaterial"/>
                     </tabBar>
                     <connections>
                         <segue destination="G43-GA-mg9" kind="relationship" relationship="viewControllers" id="YHZ-Lx-h67"/>
@@ -71,10 +72,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="355-cg-kqg">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatCell" rowHeight="72" id="Scy-NG-9mC" customClass="ChatCellView" customModule="EncryptedMessenger" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatCell" rowHeight="72" id="Scy-NG-9mC" customClass="ChatTableViewCell" customModule="EncryptedMessenger" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Scy-NG-9mC" id="ZrC-r7-ODH">
@@ -119,6 +120,7 @@
                                             <outlet property="chatImage" destination="5mE-KZ-gtc" id="hkF-gJ-u37"/>
                                             <outlet property="chatLastMessage" destination="j5F-4u-Zwn" id="Ae9-ek-rdz"/>
                                             <outlet property="chatName" destination="THN-8t-MwN" id="GHR-BU-5GM"/>
+                                            <segue destination="Zyh-1h-hPb" kind="show" identifier="" id="umD-sX-eep"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -129,7 +131,7 @@
                         <constraints>
                             <constraint firstItem="355-cg-kqg" firstAttribute="top" secondItem="UwP-vN-Txt" secondAttribute="top" id="BeA-f8-rLO"/>
                             <constraint firstItem="UwP-vN-Txt" firstAttribute="trailing" secondItem="355-cg-kqg" secondAttribute="trailing" id="EZp-8F-rvN"/>
-                            <constraint firstItem="UwP-vN-Txt" firstAttribute="bottom" secondItem="355-cg-kqg" secondAttribute="bottom" id="Zfm-hf-XhE"/>
+                            <constraint firstAttribute="bottom" secondItem="355-cg-kqg" secondAttribute="bottom" id="Zfm-hf-XhE"/>
                             <constraint firstItem="355-cg-kqg" firstAttribute="leading" secondItem="UwP-vN-Txt" secondAttribute="leading" id="uC9-Jy-HB8"/>
                         </constraints>
                     </view>
@@ -143,28 +145,85 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="355-cg-kqg" id="FtJ-yd-Zmr"/>
-                        <segue destination="Zyh-1h-hPb" kind="show" id="gvE-tn-wBw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZeC-CW-iER" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1766.6666666666667" y="337.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Chat View Controller-->
         <scene sceneID="yWn-rn-b5v">
             <objects>
-                <viewController id="Zyh-1h-hPb" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Zyh-1h-hPb" customClass="ChatViewController" customModule="EncryptedMessenger" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nRb-Rv-Cyh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="72" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gF2-21-bO0">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBr-th-3Z8">
+                                <rect key="frame" x="0.0" y="824" width="414" height="72"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="sF9-oB-hDS">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2B-rH-8Lo">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Qap-4L-Ed3">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="regular"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PIc-Xw-YVN">
+                                            <rect key="frame" x="32" y="8" width="350" height="34"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="u2B-rH-8Lo" secondAttribute="trailing" id="Nkp-Mr-EBy"/>
+                                        <constraint firstItem="u2B-rH-8Lo" firstAttribute="top" secondItem="sF9-oB-hDS" secondAttribute="top" id="YV9-S9-QS5"/>
+                                        <constraint firstItem="PIc-Xw-YVN" firstAttribute="leading" secondItem="sF9-oB-hDS" secondAttribute="leading" constant="32" id="eZe-YT-gDD"/>
+                                        <constraint firstAttribute="bottom" secondItem="u2B-rH-8Lo" secondAttribute="bottom" id="hMp-T9-Qt4"/>
+                                        <constraint firstItem="u2B-rH-8Lo" firstAttribute="leading" secondItem="sF9-oB-hDS" secondAttribute="leading" id="ikY-0N-WNh"/>
+                                        <constraint firstAttribute="trailing" secondItem="PIc-Xw-YVN" secondAttribute="trailing" constant="32" id="qrL-9I-bkr"/>
+                                        <constraint firstItem="PIc-Xw-YVN" firstAttribute="top" secondItem="sF9-oB-hDS" secondAttribute="top" constant="8" id="sgT-VT-N7z"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="gDt-hM-kgo"/>
+                                </constraints>
+                                <blurEffect style="systemThickMaterial"/>
+                            </visualEffectView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="NmA-6X-eE9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NmA-6X-eE9" firstAttribute="trailing" secondItem="oBr-th-3Z8" secondAttribute="trailing" id="6ev-Zn-q8n"/>
+                            <constraint firstAttribute="bottom" secondItem="gF2-21-bO0" secondAttribute="bottom" id="8WF-DF-MIK"/>
+                            <constraint firstItem="gF2-21-bO0" firstAttribute="trailing" secondItem="NmA-6X-eE9" secondAttribute="trailing" id="H2L-fC-Mx2"/>
+                            <constraint firstItem="gF2-21-bO0" firstAttribute="leading" secondItem="NmA-6X-eE9" secondAttribute="leading" id="O6A-2g-7NH"/>
+                            <constraint firstItem="oBr-th-3Z8" firstAttribute="leading" secondItem="NmA-6X-eE9" secondAttribute="leading" id="Spa-aV-Bt2"/>
+                            <constraint firstItem="gF2-21-bO0" firstAttribute="top" secondItem="NmA-6X-eE9" secondAttribute="top" id="XpW-h1-RWw"/>
+                            <constraint firstAttribute="bottom" secondItem="oBr-th-3Z8" secondAttribute="bottom" id="v5L-eb-fpa"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M2c-jJ-pyE"/>
+                    <connections>
+                        <outlet property="inputViewContainer" destination="oBr-th-3Z8" id="jhc-XR-uoS"/>
+                        <outlet property="inputViewContainerHeightConstraint" destination="gDt-hM-kgo" id="IjQ-KS-ZKc"/>
+                        <outlet property="tableView" destination="gF2-21-bO0" id="v0s-5l-6gb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIY-T0-8jn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1767" y="1013"/>
+            <point key="canvasLocation" x="1766.6666666666667" y="1018.5267857142857"/>
         </scene>
         <!--New Chat-->
         <scene sceneID="te1-Z2-ABd">
@@ -439,11 +498,12 @@
         <scene sceneID="rZo-kU-yQR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tTZ-MT-u60" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chats" image="lock.icloud" catalog="system" id="zel-Iw-StP"/>
+                    <tabBarItem key="tabBarItem" title="Chats" image="lock.icloud.fill" catalog="system" id="zel-Iw-StP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OkS-gj-vUq" customClass="ChatsNavBar" customModule="EncryptedMessenger" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="scrollEdgeAppearance"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -459,8 +519,8 @@
         <image name="camera" catalog="system" width="128" height="94"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="hand.draw" catalog="system" width="128" height="113"/>
-        <image name="lock.icloud" catalog="system" width="128" height="88"/>
-        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="lock.icloud.fill" catalog="system" width="128" height="88"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

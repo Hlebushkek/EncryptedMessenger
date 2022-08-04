@@ -17,4 +17,29 @@ struct ChatRequest {
         }
         self.resource = resourceURL
     }
+    
+    func findChat(name: String, completion: @escaping (Result<[Chat], ResourceRequestError>) -> Void) {
+        var components = URLComponents(url: resource, resolvingAgainstBaseURL: false)
+        components?.queryItems = [URLQueryItem(name: "name", value: name)]
+        
+        guard let url = components?.url else {
+            print("Could not create url")
+            return
+        }
+        let dataTask = URLSession.shared.dataTask(with: url) { data, _, _ in
+            guard let jsonData = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let chats = try JSONDecoder().decode([Chat].self, from: jsonData)
+                completion(.success(chats))
+            } catch {
+                completion(.failure(.decodingError))
+            }
+        }
+        
+        dataTask.resume()
+    }
 }

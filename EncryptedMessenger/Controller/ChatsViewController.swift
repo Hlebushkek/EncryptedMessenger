@@ -39,6 +39,13 @@ class ChatsViewController: UIViewController {
             case .success(let chats):
                 DispatchQueue.main.async { [weak self] in
                     self?.chats = chats
+                    self?.chats.append(contentsOf: [
+                        Chat(name: "Chat123", keyBase64: "", users: nil),
+                        Chat(name: "Chat123", keyBase64: "", users: nil),
+                        Chat(name: "Chat123", keyBase64: "", users: nil),
+                        Chat(name: "Chat123", keyBase64: "", users: nil),
+                        Chat(name: "Chat123", keyBase64: "", users: nil)
+                    ])
                 }
             }
         })
@@ -53,7 +60,7 @@ extension ChatsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell") as? ChatCellView else { return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell") as? ChatTableViewCell else { return UITableViewCell()}
         
         cell.setupCell(chat: chats[indexPath.row])
         return cell

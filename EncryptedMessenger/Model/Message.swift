@@ -10,7 +10,6 @@ import Foundation
 class Message: Codable {
     var id: UUID?
     var content: String
-    var placeFrom: Date?
     
     init(content: String) {
         self.content = content

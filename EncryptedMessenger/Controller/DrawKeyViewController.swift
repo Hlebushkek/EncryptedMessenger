@@ -89,7 +89,7 @@ class DrawKeyViewController: UIViewController {
         guard let drawedImage = mainImageView.image else {
             return
         }
-        print("Draw button")
+        
         delegate?.didEndDrawingKey(image: drawedImage)
         self.navigationController?.popViewController(animated: true)
     }

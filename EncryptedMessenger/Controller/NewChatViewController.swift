@@ -24,13 +24,12 @@ class NewChatViewController: UIViewController {
             return
         }
         
+        
         let compareRate = KeyAnalizerWrapper().compareKey(keyImage, origin: keyImage)
         print(compareRate)
         //print(KeyAnalizerWrapper().compareKey(getSavedImagePath(named: "DrawedImage.png")!, originPath: getSavedImagePath(named: "fileName.png")!))
         if (compareRate > 0.95) {
             print("Verification Success")
-            
-            //Find chat by name
             //Add chat to user
         }
     }

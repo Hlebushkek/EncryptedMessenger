@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChatCellView: UITableViewCell {
+class ChatTableViewCell: UITableViewCell {
 
     @IBOutlet weak var chatImage: UIImageView!
     @IBOutlet weak var chatName: UILabel!
@@ -15,9 +15,18 @@ class ChatCellView: UITableViewCell {
     
     func setupCell(chat: Chat) {
         chatImage.layer.cornerRadius = chatImage.bounds.width / 2
-        chatImage.image = UIImage(systemName: "pencil.circle.fill")
+        
+        let config = UIImage.SymbolConfiguration(paletteColors: [.black, .red])
+        chatImage.image = UIImage(systemName: "pencil.circle.fill")?.withConfiguration(config)
         
         chatName.text = chat.name
         chatLastMessage.text = "Last chat message"
     }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
 }
