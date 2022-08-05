@@ -16,7 +16,6 @@ struct ResourceRequest<ResourceType> where ResourceType: Codable {
             fatalError("Failed to convert baseURL to a URL")
         }
         self.resourceURL = resourceURL.appendingPathComponent(resourcePath)
-        print(self.resourceURL)
     }
     
     func getAll(completion: @escaping (Result<[ResourceType], ResourceRequestError>) -> Void) {

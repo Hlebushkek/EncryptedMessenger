@@ -10,32 +10,19 @@ import UIKit
 class ChatViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var inputViewContainer: UIView!
-    @IBOutlet weak var inputViewContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     
     var chat: Chat?
-    
-    private var messages: [Message] = [
-        Message(content: "Message123"),
-        Message(content: "Message123"),
-        Message(content: "Message123 Message123 Message123 Message123 Message123 Message123"),
-        Message(content: "Message123"),
-        Message(content: "Message123 Message123 Message123"),
-        Message(content: "Message123"),
-        Message(content: "Message123"),
-        Message(content: "Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123 Message123"),
-        Message(content: "Message123 Message123 Message123"),
-        Message(content: "Message123"),
-        Message(content: "Message123"),
-        Message(content: "Message123 Message123 Message123 Message123 Message123 Message123 Message123")
-    ]
-    
+    var messages: [Message] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchChatMessages()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         hideKeyboardWhenTappedAround()
         
         setupChatInfo()
@@ -49,19 +36,48 @@ class ChatViewController: UIViewController {
         
         tableView.transform = CGAffineTransform(rotationAngle: (-.pi))
         tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: tableView.bounds.size.width - 10)
-        tableView.contentInset = UIEdgeInsets(top: 78, left: 0, bottom: -16, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
+        //Task: Find out why content needs inset
         
         //tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .bottom, animated: false)
     }
     
+    private func fetchChatMessages() {
+        guard let id = chat?.id else { return }
+        
+        ChatRequest(chatID: id).getChatMessages { result in
+            switch result {
+            case .failure(let error):
+                let errorMessage = "There was a problem getting the Chat Messages"
+                print(error)
+                print(errorMessage)
+            case .success(let messages):
+                DispatchQueue.main.async { [weak self] in
+                    self?.messages = messages.reversed()
+                    self?.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func messageDidSent(_ message: Message) {
+        messages.insert(message, at: 0)
+        
+        tableView.performBatchUpdates({
+            tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .bottom)
+        }, completion: nil)
+    }
+    
     private func setupChatInfo() {
         self.navigationItem.title = chat?.name
+        self.navigationController?.navigationItem.title = chat?.name
+        print(self.navigationItem)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
+        print("Keyboard will show")
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            inputViewContainerHeightConstraint.constant += keyboardSize.height - 20
+            tableViewBottomConstraint.constant = keyboardSize.height - 32
             UIView.animate(withDuration: 0.5) {
                 self.view.layoutIfNeeded()
             }
@@ -69,7 +85,8 @@ class ChatViewController: UIViewController {
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
-        inputViewContainerHeightConstraint.constant = 72
+        print("Keyboard will hide")
+        tableViewBottomConstraint.constant = 0
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }

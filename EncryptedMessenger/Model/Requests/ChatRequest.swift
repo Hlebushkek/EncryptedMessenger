@@ -42,4 +42,24 @@ struct ChatRequest {
         
         dataTask.resume()
     }
+    
+    func getChatMessages(completion: @escaping (Result<[Message], ResourceRequestError>) -> Void) {
+        let url = resource.appendingPathComponent("message")
+        
+        let dataTask = URLSession.shared.dataTask(with: url) { data, _, _ in
+            guard let jsonData = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let messages = try JSONDecoder().decode([Message].self, from: jsonData)
+                completion(.success(messages))
+            } catch {
+                completion(.failure(.decodingError))
+            }
+        }
+        
+        dataTask.resume()
+    }
 }

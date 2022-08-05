@@ -11,11 +11,6 @@ class ChatsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-//    let chats = [
-//        ("pencil.circle.fill", "Chat 1", "Chat last message 1"),
-//        ("pencil.circle.fill", "Chat 2", "Chat last message 2 Chat last message 2 Chat last message 2 Chat last message 2 Chat last message 2 Chat last message 2"),
-//        ("pencil.circle.fill", "Chat 3", "Chat last message 3"),
-//    ]
     var chats: [Chat] = [] {
         didSet { tableView.reloadData() }
     }
@@ -39,13 +34,6 @@ class ChatsViewController: UIViewController {
             case .success(let chats):
                 DispatchQueue.main.async { [weak self] in
                     self?.chats = chats
-                    self?.chats.append(contentsOf: [
-                        Chat(name: "Chat123", keyBase64: "", users: nil),
-                        Chat(name: "Chat123", keyBase64: "", users: nil),
-                        Chat(name: "Chat123", keyBase64: "", users: nil),
-                        Chat(name: "Chat123", keyBase64: "", users: nil),
-                        Chat(name: "Chat123", keyBase64: "", users: nil)
-                    ])
                 }
             }
         })
@@ -66,4 +54,14 @@ extension ChatsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+}
+
+extension ChatsViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let chatTabBarController = segue.destination as? ChatTabBarController,
+           let chatVC = chatTabBarController.viewControllers?.first as? ChatViewController,
+           let index = tableView.indexPathForSelectedRow?.row {
+            chatVC.chat = chats[index]
+        }
+    }
 }
