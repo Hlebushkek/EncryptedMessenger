@@ -12,6 +12,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     
+    var user = UserDefaultsManager.user
     var chat: Chat?
     var messages: [Message] = []
 
@@ -24,8 +25,7 @@ class ChatViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         hideKeyboardWhenTappedAround()
-        
-        setupChatInfo()
+        makeNavBarUI()
         
         tableView.register(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "messageCell")
         tableView.register(UINib(nibName: "UserMessageTableViewCell", bundle: nil), forCellReuseIdentifier: "usermessageCell")
@@ -68,12 +68,6 @@ class ChatViewController: UIViewController {
         }, completion: nil)
     }
     
-    private func setupChatInfo() {
-        self.navigationItem.title = chat?.name
-        self.navigationController?.navigationItem.title = chat?.name
-        print(self.navigationItem)
-    }
-    
     @objc func keyboardWillShow(notification: NSNotification) {
         print("Keyboard will show")
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -92,9 +86,27 @@ class ChatViewController: UIViewController {
         }
     }
     
+    @objc override func dismissKeyboard() {
+        self.tabBarController?.tabBar.endEditing(true)
+    }
+    
+    private func makeNavBarUI() {
+        let label = UILabel()
+        label.text = chat?.name
+        label.isUserInteractionEnabled = true
+        self.tabBarController?.navigationItem.titleView = label
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showChatSettings))
+        self.tabBarController?.navigationItem.titleView?.addGestureRecognizer(tap)
+    }
+    
+    @objc func showChatSettings() {
+        self.performSegue(withIdentifier: "chatSettingsSegue", sender: self)
+    }
+    
 }
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
@@ -104,13 +116,21 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let isUser = Bool.random()
+        let isUser = user?.id == messages[indexPath.row].userID
         let identifier = isUser ? "usermessageCell" : "messageCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? MessageCell else { return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? MessageCell else { return UITableViewCell() }
         
         cell.setupCell(with: messages[indexPath.row])
         cell.transform = CGAffineTransform(rotationAngle: (-.pi))
         return cell
     }
     
+}
+
+extension ChatViewController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? ChatSettingsViewController {
+            
+        }
+    }
 }

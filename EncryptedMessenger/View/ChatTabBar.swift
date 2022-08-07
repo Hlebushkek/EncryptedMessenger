@@ -16,20 +16,14 @@ class ChatTabBar: UITabBar {
         
         switch tabBarState {
         case .Default:
-            return super.sizeThatFits(size)
+            return baseSize
         case .Typing(let keyboardHeight):
             self.frame.origin = CGPoint(x: 0, y: keyboardHeight + 6)
-            return super.sizeThatFits(size)
+            return baseSize
 //            return CGSize(width: baseSize.width, height: baseSize.height - 8)
         }
     }
     
-    
-    override func frame(forAlignmentRect alignmentRect: CGRect) -> CGRect {
-        let baseFrame = super.frame(forAlignmentRect: alignmentRect)
-        print(frame)
-        return baseFrame
-    }
 }
 
 enum ChatTabBarState {

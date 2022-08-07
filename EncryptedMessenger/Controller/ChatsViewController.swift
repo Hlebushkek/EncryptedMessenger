@@ -25,7 +25,9 @@ class ChatsViewController: UIViewController {
     }
     
     private func updateChats() {
-        UserRequest(userID: UUID(uuidString: "63DE2F33-86D0-4838-8111-A2783CC6E941")!).getChats(completion: { result in
+        guard let user = UserDefaultsManager.user else { return }
+        
+        UserRequest(userID: user.id).getChats(completion: { result in
             switch result {
             case .failure(let error):
                 let message = "There was an error getting the user chats"

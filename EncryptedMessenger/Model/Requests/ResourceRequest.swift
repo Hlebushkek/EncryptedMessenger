@@ -51,7 +51,10 @@ struct ResourceRequest<ResourceType> where ResourceType: Codable {
                     return
                 }
                 do {
-                    let resource = try JSONDecoder().decode(ResourceType.self, from: jsonData)
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .iso8601
+                    
+                    let resource = try decoder.decode(ResourceType.self, from: jsonData)
                     completion(.success(resource))
                 } catch {
                     print(error)

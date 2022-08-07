@@ -10,14 +10,16 @@ import Foundation
 class User: Codable {
     var id: UUID?
     var name: String
+    var imageBase64: String?
     var email: String
+    var password: String
     var phoneNumber: String?
-    var chats: [Chat]
     
-    init(name: String, email: String, phoneNumber: String? = nil, chats: [Chat]) {
+    init(name: String, imageBase64: String?, email: String, password: String,phoneNumber: String? = nil) {
         self.name = name
+        self.imageBase64 = imageBase64
         self.email = email
+        self.password = password
         self.phoneNumber = phoneNumber
-        self.chats = chats
     }
 }

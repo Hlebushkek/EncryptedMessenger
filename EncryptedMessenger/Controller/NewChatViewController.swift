@@ -19,29 +19,53 @@ class NewChatViewController: UIViewController {
     }
     
     @IBAction func joinChatButtonWasPressed(_ sender: Any) {
-        guard let chatName = chatNameTextField.text, let keyImage = keyImageView.image,
-              let keyBase64 = Utilities.convertImageToBase64String(img: keyImage) else {
+        guard let chatName = chatNameTextField.text, let keyDrawedImage = keyImageView.image else {
             return
         }
         
-        
-        let compareRate = KeyAnalizerWrapper().compareKey(keyImage, origin: keyImage)
-        print(compareRate)
-        //print(KeyAnalizerWrapper().compareKey(getSavedImagePath(named: "DrawedImage.png")!, originPath: getSavedImagePath(named: "fileName.png")!))
-        if (compareRate > 0.95) {
-            print("Verification Success")
-            //Add chat to user
+        ChatRequest().findChat(name: chatName) { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let findedChat):
+                guard let findedChatID = findedChat.id else {
+                    print("Finded Chat has no id")
+                    return
+                }
+                
+                let keyOriginImage = Utilities.convertBase64StringToImage(imageBase64String: findedChat.keyBase64)
+                let compareRate = KeyAnalizerWrapper().compareKey(keyDrawedImage, origin: keyOriginImage)
+                
+                print(compareRate)
+                if (compareRate > 0.75) {
+                    print("Verification Success")
+                    UserRequest(userID: UserDefaultsManager.user?.id).attachChat(chatID: findedChatID) { result in
+                        switch result {
+                        case .failure(let error):
+                            print(error)
+                        case .success(_):
+                            print("Successfuly attach chat to user")
+                        }
+                        
+                        DispatchQueue.main.async { [weak self] in
+                            self?.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                }
+            }
         }
+        //print(KeyAnalizerWrapper().compareKey(getSavedImagePath(named: "DrawedImage.png")!, originPath: getSavedImagePath(named: "fileName.png")!))
     }
     
     @IBAction func createButtonWasPressed(_ sender: Any) {
         guard let chatName = chatNameTextField.text, let keyImage = keyImageView.image,
-              let keyBase64 = Utilities.convertImageToBase64String(img: keyImage) else {
+              let keyBase64 = Utilities.convertImageToBase64String(img: keyImage),
+              let userID = UserDefaultsManager.user?.id else {
             return
         }
         
-        let chat = Chat(name: chatName, keyBase64: keyBase64, users: [])
-        ResourceRequest<Chat>(resourcePath: "chat").save(chat) { [weak self] result in
+        let chat = Chat(name: chatName, imageBase64: nil, keyBase64: keyBase64)
+        ResourceRequest<Chat>(resourcePath: "chat").save(chat) { result in
             switch result {
             case .failure(let error):
                 print(error)
@@ -49,22 +73,18 @@ class NewChatViewController: UIViewController {
                 print(message)
             case .success(let chat):
                 print("Chat: \(chat.name) was successfuly created")
-                
-                let userID = "63DE2F33-86D0-4838-8111-A2783CC6E941"
-                var urlRequest = URLRequest(url: URL(string: "http://192.168.3.2:8080/api/user/\(userID)/chat/\(chat.id!)")!)
-                urlRequest.httpMethod = "POST"
-                let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, _ in
-                    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 201 else {
-                        print("Error in connecting user to chat")
-                        return
+                UserRequest(userID: userID).attachChat(chatID: chat.id!) { result in
+                    switch result {
+                    case .failure(let error):
+                        print(error)
+                    case .success(_):
+                        print("Successfuly attach chat to user")
                     }
-                    print("Successfuly connect user to chat")
                     
                     DispatchQueue.main.async { [weak self] in
                         self?.navigationController?.popViewController(animated: true)
                     }
                 }
-                dataTask.resume()
             }
         }
     }

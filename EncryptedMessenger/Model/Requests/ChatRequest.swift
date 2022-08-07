@@ -10,22 +10,29 @@ import Foundation
 struct ChatRequest {
     let resource: URL
     
-    init(chatID: UUID) {
-        let resourceString = "http://192.168.3.2:8080/api/chat/\(chatID)"
+    init(chatID: UUID? = nil) {
+        
+        var resourceString = "http://192.168.3.2:8080/api/chat"
+        if let chatID = chatID {
+            resourceString.append("/\(chatID)")
+        }
+        
         guard let resourceURL = URL(string: resourceString) else {
             fatalError("Unable to createURL")
         }
         self.resource = resourceURL
     }
     
-    func findChat(name: String, completion: @escaping (Result<[Chat], ResourceRequestError>) -> Void) {
-        var components = URLComponents(url: resource, resolvingAgainstBaseURL: false)
+    func findChat(name: String, completion: @escaping (Result<Chat, ResourceRequestError>) -> Void) {
+        let url = resource.appendingPathComponent("search")
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         components?.queryItems = [URLQueryItem(name: "name", value: name)]
         
         guard let url = components?.url else {
             print("Could not create url")
             return
         }
+        
         let dataTask = URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.noData))
@@ -33,9 +40,10 @@ struct ChatRequest {
             }
             
             do {
-                let chats = try JSONDecoder().decode([Chat].self, from: jsonData)
+                let chats = try JSONDecoder().decode(Chat.self, from: jsonData)
                 completion(.success(chats))
             } catch {
+                print(error.localizedDescription)
                 completion(.failure(.decodingError))
             }
         }
@@ -53,9 +61,13 @@ struct ChatRequest {
             }
             
             do {
-                let messages = try JSONDecoder().decode([Message].self, from: jsonData)
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                
+                let messages = try decoder.decode([Message].self, from: jsonData)
                 completion(.success(messages))
             } catch {
+                print(error.localizedDescription)
                 completion(.failure(.decodingError))
             }
         }

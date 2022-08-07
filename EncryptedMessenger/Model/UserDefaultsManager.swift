@@ -8,12 +8,18 @@
 import Foundation
 
 class UserDefaultsManager {
+    private static let encoder = JSONEncoder()
+    private static let decoder = JSONDecoder()
+    
     static var user: User? {
         set {
-            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.User.rawValue)
+            let data = try? encoder.encode(newValue)
+            UserDefaults.standard.set(data, forKey: UserDefaultsKeys.User.rawValue)
         }
         get {
-            return UserDefaults.standard.object(forKey: UserDefaultsKeys.User.rawValue) as? User
+            guard let data = UserDefaults.standard.data(forKey: UserDefaultsKeys.User.rawValue) else { return nil }
+            let user = try? decoder.decode(User.self, from: data)
+            return user
         }
     }
 }

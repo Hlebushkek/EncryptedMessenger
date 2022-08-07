@@ -43,11 +43,10 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="utn-4t-d81" secondAttribute="trailing" constant="256" id="Jim-tU-ir4"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="utn-4t-d81" secondAttribute="trailing" constant="40" id="Jim-tU-ir4"/>
                     <constraint firstItem="utn-4t-d81" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="Sik-Hf-r9I"/>
                     <constraint firstItem="utn-4t-d81" firstAttribute="leading" secondItem="WiI-dq-B63" secondAttribute="trailing" constant="4" id="Uc8-FV-jcy"/>
                     <constraint firstAttribute="bottom" secondItem="utn-4t-d81" secondAttribute="bottom" constant="4" id="XH5-EW-ArI"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="utn-4t-d81" secondAttribute="trailing" constant="40" id="Zvc-rw-1jq"/>
                     <constraint firstItem="WiI-dq-B63" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="eMP-0o-YSI"/>
                     <constraint firstAttribute="bottom" secondItem="WiI-dq-B63" secondAttribute="bottom" constant="4" id="ndo-eZ-FeC"/>
                     <constraint firstItem="WiI-dq-B63" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="uSL-4V-n52"/>

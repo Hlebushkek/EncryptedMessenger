@@ -43,8 +43,6 @@ class ChatTabBarController: UITabBarController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        self.navigationItem.title = ChatVC?.chat?.name
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -63,7 +61,9 @@ class ChatTabBarController: UITabBarController {
     @objc private func sendMessageButtonWasPressed() {
         guard let chatVC = ChatVC, let messageContent = textField.text, messageContent != "" else { return }
         
-        let message = Message(content: messageContent, userID: UUID(uuidString: "63DE2F33-86D0-4838-8111-A2783CC6E941"), chatID: chatVC.chat?.id)
+        textField.text = ""
+        
+        let message = Message(content: messageContent, userID: chatVC.user?.id, chatID: chatVC.chat?.id)
         ResourceRequest<Message>(resourcePath: "message").save(message) { result in
             switch result {
             case .failure(let error):

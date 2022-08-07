@@ -18,10 +18,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxn-hi-7cv" customClass="GradientView" customModule="EncryptedMessenger" customModuleProvider="target">
-                        <rect key="frame" x="256" y="4" width="60" height="36"/>
+                        <rect key="frame" x="262.5" y="4" width="53.5" height="36"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTy-Yn-iTL">
-                                <rect key="frame" x="4" y="8" width="52" height="20"/>
+                                <rect key="frame" x="8" y="4" width="37.5" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -29,15 +29,14 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="zTy-Yn-iTL" firstAttribute="leading" secondItem="nxn-hi-7cv" secondAttribute="leading" constant="4" id="3PD-9W-mNK"/>
-                            <constraint firstItem="zTy-Yn-iTL" firstAttribute="top" secondItem="nxn-hi-7cv" secondAttribute="top" constant="8" id="8ei-js-RUr"/>
-                            <constraint firstAttribute="bottom" secondItem="zTy-Yn-iTL" secondAttribute="bottom" constant="8" id="Ss4-8D-Icv"/>
-                            <constraint firstAttribute="trailing" secondItem="zTy-Yn-iTL" secondAttribute="trailing" constant="4" id="XUL-xT-en3"/>
+                            <constraint firstItem="zTy-Yn-iTL" firstAttribute="leading" secondItem="nxn-hi-7cv" secondAttribute="leading" constant="8" id="3PD-9W-mNK"/>
+                            <constraint firstItem="zTy-Yn-iTL" firstAttribute="top" secondItem="nxn-hi-7cv" secondAttribute="top" constant="4" id="8ei-js-RUr"/>
+                            <constraint firstAttribute="bottom" secondItem="zTy-Yn-iTL" secondAttribute="bottom" constant="4" id="Ss4-8D-Icv"/>
+                            <constraint firstAttribute="trailing" secondItem="zTy-Yn-iTL" secondAttribute="trailing" constant="8" id="XUL-xT-en3"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="nxn-hi-7cv" firstAttribute="leading" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="256" id="68c-rq-hmb"/>
                     <constraint firstItem="nxn-hi-7cv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="Fai-Xf-aIn"/>
                     <constraint firstAttribute="trailing" secondItem="nxn-hi-7cv" secondAttribute="trailing" constant="4" id="UKJ-5N-k8l"/>
                     <constraint firstItem="nxn-hi-7cv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="nee-as-rhH"/>
