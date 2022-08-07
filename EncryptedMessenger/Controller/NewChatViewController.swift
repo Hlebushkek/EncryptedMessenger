@@ -23,10 +23,11 @@ class NewChatViewController: UIViewController {
             return
         }
         
-        ChatRequest().findChat(name: chatName) { result in
+        ChatRequest().findChat(name: chatName) { [weak self] result in
             switch result {
             case .failure(let error):
                 print(error)
+                self?.showError(title: "Can't join to chat", message: "Can't find chat")
             case .success(let findedChat):
                 guard let findedChatID = findedChat.id else {
                     print("Finded Chat has no id")
@@ -38,23 +39,23 @@ class NewChatViewController: UIViewController {
                 
                 print(compareRate)
                 if (compareRate > 0.75) {
-                    print("Verification Success")
                     UserRequest(userID: UserDefaultsManager.user?.id).attachChat(chatID: findedChatID) { result in
                         switch result {
                         case .failure(let error):
                             print(error)
+                            self?.showError(title: "Can't join to chat", message: "Key was correct, but error occured when trying attach chat to user")
                         case .success(_):
                             print("Successfuly attach chat to user")
-                        }
-                        
-                        DispatchQueue.main.async { [weak self] in
-                            self?.navigationController?.popViewController(animated: true)
+                            DispatchQueue.main.async { [weak self] in
+                                self?.navigationController?.popViewController(animated: true)
+                            }
                         }
                     }
+                } else {
+                    self?.showError(title: "Can't join to chat", message: "Incorrect Key")
                 }
             }
         }
-        //print(KeyAnalizerWrapper().compareKey(getSavedImagePath(named: "DrawedImage.png")!, originPath: getSavedImagePath(named: "fileName.png")!))
     }
     
     @IBAction func createButtonWasPressed(_ sender: Any) {
@@ -65,27 +66,34 @@ class NewChatViewController: UIViewController {
         }
         
         let chat = Chat(name: chatName, imageBase64: nil, keyBase64: keyBase64)
-        ResourceRequest<Chat>(resourcePath: "chat").save(chat) { result in
+        ResourceRequest<Chat>(resourcePath: "chat").save(chat) { [weak self] result in
             switch result {
             case .failure(let error):
                 print(error)
-                let message = "There was a problem saving the chat"
-                print(message)
+                self?.showError(title: "Chat creation error", message: "Can't create chat")
             case .success(let chat):
                 print("Chat: \(chat.name) was successfuly created")
                 UserRequest(userID: userID).attachChat(chatID: chat.id!) { result in
                     switch result {
                     case .failure(let error):
                         print(error)
+                        self?.showError(title: "Chat creation error", message: "Can't attach user to chat")
                     case .success(_):
                         print("Successfuly attach chat to user")
-                    }
-                    
-                    DispatchQueue.main.async { [weak self] in
-                        self?.navigationController?.popViewController(animated: true)
+                        DispatchQueue.main.async { [weak self] in
+                            self?.navigationController?.popViewController(animated: true)
+                        }
                     }
                 }
             }
+        }
+    }
+    
+    private func showError(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alert, animated: true)
         }
     }
     
