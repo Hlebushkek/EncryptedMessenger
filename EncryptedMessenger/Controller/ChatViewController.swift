@@ -19,6 +19,7 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        MessagesWebSocket.shared.addListener(self)
         fetchChatMessages()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -61,11 +62,7 @@ class ChatViewController: UIViewController {
     }
     
     func messageDidSent(_ message: Message) {
-        messages.insert(message, at: 0)
-        
-        tableView.performBatchUpdates({
-            tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .bottom)
-        }, completion: nil)
+        insertNew(message)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -125,9 +122,27 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func insertNew(_ message: Message) {
+        messages.insert(message, at: 0)
+        
+        tableView.performBatchUpdates({
+            tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .bottom)
+        }, completion: nil)
+    }
+    
 }
 
-extension ChatViewController{
+extension ChatViewController: MessagesWebSocketListener {
+    func didRecievedMessage(_ message: Message) {
+        if message.chatID == chat?.id && message.userID != user?.id {
+            DispatchQueue.main.async { [weak self] in
+                self?.insertNew(message)
+            }
+        }
+    }
+}
+
+extension ChatViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ChatSettingsViewController {
             

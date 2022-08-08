@@ -11,8 +11,16 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        
     }
+    
+    @IBAction func logoutButtonWasPressed(_ sender: Any) {
+        print("User = nil")
+        UserDefaultsManager.user = nil
+    }
+}
 
-
+struct Users: Codable {
+    let users: [UUID]
 }

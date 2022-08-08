@@ -15,8 +15,22 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVN-lU-Vcl">
+                                <rect key="frame" x="172.5" y="766" width="69.5" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutButtonWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mrT-DQ-T6V"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sVN-lU-Vcl" secondAttribute="bottom" constant="16" id="GuL-XX-Qzu"/>
+                            <constraint firstItem="sVN-lU-Vcl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VeW-ZA-PCj"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="nDp-SQ-eGQ"/>
                 </viewController>
