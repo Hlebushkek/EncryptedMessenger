@@ -12,7 +12,7 @@ struct UserRequest {
     
     init(userID: UUID? = nil) {
         
-        var resourceString = "http://192.168.3.2:8080/api/user"
+        var resourceString = "https://\(Utilities.API_URL_STR)/api/user"
         if let userID = userID {
             resourceString.append("/\(userID)")
         }

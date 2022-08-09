@@ -8,7 +8,7 @@
 import Foundation
 
 struct ResourceRequest<ResourceType> where ResourceType: Codable {
-    let baseURL = "http://192.168.3.2:8080/api/"
+    let baseURL = "https://\(Utilities.API_URL_STR)/api/"
     let resourceURL: URL
     
     init(resourcePath: String) {

@@ -102,7 +102,7 @@ extension DrawKeyViewController: DrawSettingsViewControllerDelegate {
     }
     
     func invertKey() {
-        mainImageView.image = KeyAnalizerWrapper().invertKey(mainImageView.image)
+        mainImageView.image = KeyAnalizerWrapper.invertKey(mainImageView.image)
     }
 }
 

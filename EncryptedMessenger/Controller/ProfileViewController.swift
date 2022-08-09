@@ -20,7 +20,3 @@ class ProfileViewController: UIViewController {
         UserDefaultsManager.user = nil
     }
 }
-
-struct Users: Codable {
-    let users: [UUID]
-}

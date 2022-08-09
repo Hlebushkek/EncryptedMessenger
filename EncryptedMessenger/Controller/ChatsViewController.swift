@@ -11,9 +11,7 @@ class ChatsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var chats: [Chat] = [] {
-        didSet { tableView.reloadData() }
-    }
+    var chats: [Chat] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +34,7 @@ class ChatsViewController: UIViewController {
             case .success(let chats):
                 DispatchQueue.main.async { [weak self] in
                     self?.chats = chats
+                    self?.tableView.reloadData()
                 }
             }
         })
@@ -54,6 +53,14 @@ extension ChatsViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.setupCell(chat: chats[indexPath.row])
         return cell
+    }
+    
+    func add(_ chat: Chat) {
+        chats.append(chat)
+        
+        tableView.performBatchUpdates({
+            tableView.insertRows(at: [IndexPath(row: chats.count-1, section: 0)], with: .bottom)
+        }, completion: nil)
     }
     
 }

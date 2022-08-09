@@ -10,7 +10,7 @@ import Foundation
 class MessagesWebSocket {
     
     private init() {}
-    static var shared = MessagesWebSocket()
+    public static var shared = MessagesWebSocket()
     
     private var listeners: [MessagesWebSocketListener] = []
     public func addListener(_ newListener: MessagesWebSocketListener) {
@@ -23,49 +23,49 @@ class MessagesWebSocket {
         }
     }
     
-    var webSocketTask: URLSessionWebSocketTask!
-    var recieveTimer: Timer!
+    private var webSocketTask: URLSessionWebSocketTask!
+    private var recieveTimer: Timer!
     
     func setupWebSocket() {
         let urlSession = URLSession(configuration: .default)
-        webSocketTask = urlSession.webSocketTask(with: URL(string: "ws://192.168.3.2:8080/echo")!)
+        webSocketTask = urlSession.webSocketTask(with: URL(string: "ws://\(Utilities.API_URL_STR)/echo")!)
         webSocketTask.resume()
         
-        guard let user = try? JSONEncoder().encode(UserDefaultsManager.user) else { return }
+        guard let user = try? JSONEncoder().encode(UserDefaultsManager.user) else {
+            print("Could not encode User")
+            return
+        }
         let userData = URLSessionWebSocketTask.Message.data(user)
-        
-//        let message = URLSessionWebSocketTask.Message.string(
-//        """
-//            { "user": "user123"}
-//        """)
         webSocketTask.send(userData) { error in
             if let error = error {
                 print("Websocket couldn't send message. \(error.localizedDescription)")
             }
         }
+        
         recieveTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(recieveMessage), userInfo: nil, repeats: true)
     }
     
     @objc func recieveMessage() {
-        print("recieveMessage")
         webSocketTask.receive { result in
             switch result {
             case .failure(let error):
                 print("Can't recieve message. \(error.localizedDescription)")
             case .success(let message):
-                print("Message: \(message)")
                 switch message {
                 case .data(let data):
                     print(data.description)
-                    if let message = try? JSONDecoder().decode(Message.self, from: data) {
+                    do {
+                        let message = try JSONDecoder().decode(Message.self, from: data)
                         for listener in self.listeners {
                             listener.didRecievedMessage(message)
                         }
+                    } catch {
+                        print(error.localizedDescription)
                     }
                 case .string(let str):
                     print(str)
                 default:
-                    print("Undefined Message")
+                    print("Undefined Message Type")
                     return
                 }
             }

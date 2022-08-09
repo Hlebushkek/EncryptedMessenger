@@ -8,13 +8,20 @@
 import Foundation
 
 class Utilities {
-    static func convertImageToBase64String (img: UIImage) -> String? {
-        return img.jpegData(compressionQuality: 1)?.base64EncodedString()
+    static func base64String(from image: UIImage) -> String? {
+        return image.jpegData(compressionQuality: 1)?.base64EncodedString()
     }
     
-    static func convertBase64StringToImage (imageBase64String:String) -> UIImage {
-        let imageData = Data(base64Encoded: imageBase64String)
-        let image = UIImage(data: imageData!)
-        return image!
+    static func image(from base64Str: String) -> UIImage? {
+        let imageData = Data(base64Encoded: base64Str)
+        
+        if let imageData = imageData {
+            return UIImage(data: imageData)
+        }
+        return nil
+    }
+    
+    static var API_URL_STR: String {
+        return try! Config.value(for: "API_URL")
     }
 }

@@ -34,8 +34,8 @@ class NewChatViewController: UIViewController {
                     return
                 }
                 
-                let keyOriginImage = Utilities.convertBase64StringToImage(imageBase64String: findedChat.keyBase64)
-                let compareRate = KeyAnalizerWrapper().compareKey(keyDrawedImage, origin: keyOriginImage)
+                let keyOriginImage = Utilities.image(from: findedChat.keyBase64)
+                let compareRate = KeyAnalizerWrapper.compareKey(keyDrawedImage, origin: keyOriginImage)
                 
                 print(compareRate)
                 if (compareRate > 0.75) {
@@ -46,9 +46,7 @@ class NewChatViewController: UIViewController {
                             self?.showError(title: "Can't join to chat", message: "Key was correct, but error occured when trying attach chat to user")
                         case .success(_):
                             print("Successfuly attach chat to user")
-                            DispatchQueue.main.async { [weak self] in
-                                self?.navigationController?.popViewController(animated: true)
-                            }
+                            self?.addChatToList(chat: findedChat)
                         }
                     }
                 } else {
@@ -60,7 +58,7 @@ class NewChatViewController: UIViewController {
     
     @IBAction func createButtonWasPressed(_ sender: Any) {
         guard let chatName = chatNameTextField.text, let keyImage = keyImageView.image,
-              let keyBase64 = Utilities.convertImageToBase64String(img: keyImage),
+              let keyBase64 = Utilities.base64String(from: keyImage),
               let userID = UserDefaultsManager.user?.id else {
             return
         }
@@ -71,21 +69,28 @@ class NewChatViewController: UIViewController {
             case .failure(let error):
                 print(error)
                 self?.showError(title: "Chat creation error", message: "Can't create chat")
-            case .success(let chat):
-                print("Chat: \(chat.name) was successfuly created")
-                UserRequest(userID: userID).attachChat(chatID: chat.id!) { result in
+            case .success(let createdChat):
+                print("Chat: \(createdChat.name) was successfuly created")
+                UserRequest(userID: userID).attachChat(chatID: createdChat.id!) { result in
                     switch result {
                     case .failure(let error):
                         print(error)
                         self?.showError(title: "Chat creation error", message: "Can't attach user to chat")
                     case .success(_):
                         print("Successfuly attach chat to user")
-                        DispatchQueue.main.async { [weak self] in
-                            self?.navigationController?.popViewController(animated: true)
-                        }
+                        self?.addChatToList(chat: createdChat)
                     }
                 }
             }
+        }
+    }
+    
+    private func addChatToList(chat: Chat) {
+        DispatchQueue.main.async { [weak self] in
+            if let viewControllers = self?.navigationController?.viewControllers,  viewControllers.count > 1 {
+                (viewControllers[viewControllers.count - 2] as? ChatsViewController)?.add(chat)
+            }
+            self?.navigationController?.popViewController(animated: true)
         }
     }
     

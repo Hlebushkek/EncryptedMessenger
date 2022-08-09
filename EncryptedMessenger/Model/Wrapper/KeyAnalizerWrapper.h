@@ -9,9 +9,9 @@
 
 @interface KeyAnalizerWrapper : NSObject
 
-- (float) compareKey:(UIImage*)drawedImage origin:(UIImage*)originImage;
-- (float) compareKey:(NSString*)drawedPath originPath:(NSString*)originPath;
++ (float) compareKey:(UIImage*)drawedImage origin:(UIImage*)originImage;
++ (float) compareKey:(NSString*)drawedPath originPath:(NSString*)originPath;
 
-- (UIImage*) invertKey:(UIImage*)sourceImage;
++ (UIImage*) invertKey:(UIImage*)sourceImage;
 
 @end

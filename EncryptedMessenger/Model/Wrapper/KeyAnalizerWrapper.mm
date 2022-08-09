@@ -12,8 +12,19 @@
 
 @implementation KeyAnalizerWrapper
 
-- (float) compareKey:(UIImage*)drawedImage origin:(UIImage*)originImage {
-    KeyAnalizer keyAnalizer;
+static KeyAnalizer* keyAnalizer;
+
+__attribute__((constructor))
+static void initialize_recognizer() {
+    keyAnalizer = new KeyAnalizer();
+}
+
+__attribute__((destructor))
+static void destroy_recognizer() {
+    delete keyAnalizer;
+}
+
++ (float) compareKey:(UIImage*)drawedImage origin:(UIImage*)originImage {
     cv::Mat drawed;
     cv::Mat origin;
     
@@ -26,11 +37,10 @@
     cv::extractChannel(drawed, drawedGray, 3);
     cv::cvtColor(origin, originGray, cv::COLOR_RGBA2GRAY);
     
-    return keyAnalizer.customCompareImage(drawedGray, originGray);
+    return keyAnalizer->customCompareImage(drawedGray, originGray);
 }
 
-- (float) compareKey:(NSString*)drawedPath originPath:(NSString*)originPath {
-    KeyAnalizer keyAnalizer;
++ (float) compareKey:(NSString*)drawedPath originPath:(NSString*)originPath {
     cv::Mat drawed;
     cv::Mat origin;
     
@@ -41,15 +51,14 @@
     origin = cv::imread(charOriginPath, cv::IMREAD_GRAYSCALE);
     
     
-    return keyAnalizer.customCompareImage(drawed, origin);
+    return keyAnalizer->customCompareImage(drawed, origin);
 }
 
-- (UIImage*) invertKey:(UIImage*)drawedImage {
-    KeyAnalizer keyAnalizer;
++ (UIImage*) invertKey:(UIImage*)drawedImage {
     cv::Mat mat;
     UIImageToMat(drawedImage, mat, true);
 
-    keyAnalizer.invertKey(mat);
+    keyAnalizer->invertKey(mat);
     
     return MatToUIImage(mat);
 }

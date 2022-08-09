@@ -1,0 +1,11 @@
+//
+//  ConfigFile.xcconfig
+//  EncryptedMessenger
+//
+//  Created by Gleb Sobolevsky on 10.08.2022.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_URL = encrypted-messanger.herokuapp.com

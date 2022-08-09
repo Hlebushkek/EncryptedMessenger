@@ -13,13 +13,12 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     
     var user = UserDefaultsManager.user
-    var chat: Chat?
+    weak var chat: Chat?
     var messages: [Message] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        MessagesWebSocket.shared.addListener(self)
         fetchChatMessages()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -43,6 +42,15 @@ class ChatViewController: UIViewController {
         //tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .bottom, animated: false)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MessagesWebSocket.shared.addListener(self)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        MessagesWebSocket.shared.removeListener(self)
+    }
+    
     private func fetchChatMessages() {
         guard let id = chat?.id else { return }
         
@@ -62,7 +70,7 @@ class ChatViewController: UIViewController {
     }
     
     func messageDidSent(_ message: Message) {
-        insertNew(message)
+        add(message)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -122,7 +130,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func insertNew(_ message: Message) {
+    func add(_ message: Message) {
         messages.insert(message, at: 0)
         
         tableView.performBatchUpdates({
@@ -136,7 +144,7 @@ extension ChatViewController: MessagesWebSocketListener {
     func didRecievedMessage(_ message: Message) {
         if message.chatID == chat?.id && message.userID != user?.id {
             DispatchQueue.main.async { [weak self] in
-                self?.insertNew(message)
+                self?.add(message)
             }
         }
     }
@@ -145,7 +153,7 @@ extension ChatViewController: MessagesWebSocketListener {
 extension ChatViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ChatSettingsViewController {
-            
+            vc.chat = chat
         }
     }
 }

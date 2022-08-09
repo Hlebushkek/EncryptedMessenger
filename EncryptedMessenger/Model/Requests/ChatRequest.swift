@@ -12,7 +12,7 @@ struct ChatRequest {
     
     init(chatID: UUID? = nil) {
         
-        var resourceString = "http://192.168.3.2:8080/api/chat"
+        var resourceString = "https://\(Utilities.API_URL_STR)/api/chat"
         if let chatID = chatID {
             resourceString.append("/\(chatID)")
         }
@@ -42,6 +42,29 @@ struct ChatRequest {
             do {
                 let chats = try JSONDecoder().decode(Chat.self, from: jsonData)
                 completion(.success(chats))
+            } catch {
+                print(error.localizedDescription)
+                completion(.failure(.decodingError))
+            }
+        }
+        
+        dataTask.resume()
+    }
+    
+    func getChatUsers(completion: @escaping (Result<[User], ResourceRequestError>) -> Void) {
+        let url = resource.appendingPathComponent("user")
+        
+        let dataTask = URLSession.shared.dataTask(with: url) { data, _, _ in
+            guard let jsonData = data else {
+                print("NO DATA")
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                
+                let users = try JSONDecoder().decode([User].self, from: jsonData)
+                completion(.success(users))
             } catch {
                 print(error.localizedDescription)
                 completion(.failure(.decodingError))
