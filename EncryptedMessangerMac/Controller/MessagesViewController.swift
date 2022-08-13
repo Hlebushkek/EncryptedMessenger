@@ -15,7 +15,7 @@ class MessagesViewController: NSViewController {
         super.viewDidLoad()
         
         
-        secondVC = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "secondVC") as? NSViewController
+//        secondVC = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "secondVC") as? NSViewController
     }
     
     

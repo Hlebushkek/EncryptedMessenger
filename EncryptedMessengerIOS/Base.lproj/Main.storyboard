@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile-->
+        <!--@UserName-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="EncryptedMessenger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="EncryptedMessengerIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,43 +24,84 @@
                                     <action selector="logoutButtonWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mrT-DQ-T6V"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bWy-0z-dMC">
+                                <rect key="frame" x="0.0" y="155" width="414" height="611"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settingCell" id="Bmf-Bk-gMF" customClass="SettingTableViewCell" customModule="EncryptedMessengerIOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="49.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bmf-Bk-gMF" id="eGo-y6-y8d">
+                                            <rect key="frame" x="0.0" y="0.0" width="385.5" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1aV-GY-Qgh">
+                                                    <rect key="frame" x="16" y="6" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="MMg-KD-BUY"/>
+                                                        <constraint firstAttribute="width" constant="32" id="Wnd-kh-i78"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scg-Yd-FSk">
+                                                    <rect key="frame" x="64" y="11.5" width="313.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1aV-GY-Qgh" firstAttribute="leading" secondItem="eGo-y6-y8d" secondAttribute="leading" constant="16" id="4j5-ot-ljN"/>
+                                                <constraint firstItem="Scg-Yd-FSk" firstAttribute="leading" secondItem="1aV-GY-Qgh" secondAttribute="trailing" constant="16" id="4p3-pZ-srP"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Scg-Yd-FSk" secondAttribute="trailing" id="aIc-QO-9Jh"/>
+                                                <constraint firstItem="Scg-Yd-FSk" firstAttribute="centerY" secondItem="eGo-y6-y8d" secondAttribute="centerY" id="tYr-Fn-mgv"/>
+                                                <constraint firstItem="1aV-GY-Qgh" firstAttribute="centerY" secondItem="eGo-y6-y8d" secondAttribute="centerY" id="w0N-Y3-AMb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="settingImageView" destination="1aV-GY-Qgh" id="pQb-ti-KKx"/>
+                                            <outlet property="settingNameLabel" destination="Scg-Yd-FSk" id="72P-9c-7hM"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLS-dN-UNu" customClass="ProfileHeaderView" customModule="EncryptedMessengerIOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="155"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="155" id="lgY-Hc-OcH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bWy-0z-dMC" secondAttribute="trailing" id="DWV-LJ-A81"/>
+                            <constraint firstItem="sVN-lU-Vcl" firstAttribute="top" secondItem="bWy-0z-dMC" secondAttribute="bottom" id="GB1-PD-ude"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sVN-lU-Vcl" secondAttribute="bottom" constant="16" id="GuL-XX-Qzu"/>
                             <constraint firstItem="sVN-lU-Vcl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VeW-ZA-PCj"/>
+                            <constraint firstItem="bWy-0z-dMC" firstAttribute="top" secondItem="XLS-dN-UNu" secondAttribute="bottom" id="ZBT-4b-gDs"/>
+                            <constraint firstItem="XLS-dN-UNu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="d1q-Wl-WuX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XLS-dN-UNu" secondAttribute="trailing" id="go7-dt-hZF"/>
+                            <constraint firstItem="XLS-dN-UNu" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="j0Q-jE-22D"/>
+                            <constraint firstItem="bWy-0z-dMC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pgp-1U-2nj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="nDp-SQ-eGQ"/>
+                    <navigationItem key="navigationItem" title="@UserName" id="nDp-SQ-eGQ"/>
+                    <connections>
+                        <outlet property="headerView" destination="XLS-dN-UNu" id="2BJ-GY-JcR"/>
+                        <outlet property="headerViewHeightConstraint" destination="lgY-Hc-OcH" id="Uwa-tL-9j5"/>
+                        <outlet property="headerViewTopConstraint" destination="j0Q-jE-22D" id="R0r-2N-dKF"/>
+                        <outlet property="tableView" destination="bWy-0z-dMC" id="KQE-gy-eOz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1768" y="-356"/>
-        </scene>
-        <!--Profile-->
-        <scene sceneID="8jz-ge-kte">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G43-GA-mg9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="person.fill" catalog="system" id="Y8M-Gt-0Nq"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EhV-TP-cns">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="dff-Pg-PFV"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CKa-Zt-ZVJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="906" y="-356"/>
+            <point key="canvasLocation" x="1767" y="-317"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="jwq-A5-3BF">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="dYE-Xp-cWi" customClass="MainTabBarController" customModule="EncryptedMessenger" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="dYE-Xp-cWi" customClass="MainTabBarController" customModule="EncryptedMessengerIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7qV-fn-JKe">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -69,8 +110,8 @@
                         <tabBarAppearance key="scrollEdgeAppearance" backgroundEffect="systemThickMaterial"/>
                     </tabBar>
                     <connections>
-                        <segue destination="G43-GA-mg9" kind="relationship" relationship="viewControllers" id="YHZ-Lx-h67"/>
-                        <segue destination="tTZ-MT-u60" kind="relationship" relationship="viewControllers" id="Tqv-Y9-2O0"/>
+                        <segue destination="62y-Z2-LpI" kind="relationship" relationship="viewControllers" id="aRf-Db-CdW"/>
+                        <segue destination="tTZ-MT-u60" kind="relationship" relationship="viewControllers" id="vy8-sP-DED"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9X-pZ-klR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -80,7 +121,7 @@
         <!--Chats-->
         <scene sceneID="q3W-QM-vaL">
             <objects>
-                <viewController id="5WQ-EC-qME" customClass="ChatsViewController" customModule="EncryptedMessenger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5WQ-EC-qME" customClass="ChatsViewController" customModule="EncryptedMessengerIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="drm-AY-ia2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -89,7 +130,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatCell" rowHeight="72" id="Scy-NG-9mC" customClass="ChatTableViewCell" customModule="EncryptedMessenger" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatCell" rowHeight="72" id="Scy-NG-9mC" customClass="ChatTableViewCell" customModule="EncryptedMessengerIOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Scy-NG-9mC" id="ZrC-r7-ODH">
@@ -168,9 +209,9 @@
         <!--Chat Name-->
         <scene sceneID="C39-Tp-sZW">
             <objects>
-                <tabBarController hidesBottomBarWhenPushed="YES" id="3Jv-IK-pT7" customClass="ChatTabBarController" customModule="EncryptedMessenger" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController hidesBottomBarWhenPushed="YES" id="3Jv-IK-pT7" customClass="ChatTabBarController" customModule="EncryptedMessengerIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Chat Name" id="BdO-6L-RRC"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ucT-SB-LfR" customClass="ChatTabBar" customModule="EncryptedMessenger" customModuleProvider="target">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ucT-SB-LfR" customClass="ChatTabBar" customModule="EncryptedMessengerIOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -187,7 +228,7 @@
         <!--Chat View Controller-->
         <scene sceneID="yWn-rn-b5v">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Zyh-1h-hPb" customClass="ChatViewController" customModule="EncryptedMessenger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Zyh-1h-hPb" customClass="ChatViewController" customModule="EncryptedMessengerIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nRb-Rv-Cyh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -221,7 +262,7 @@
         <!--Settings-->
         <scene sceneID="no4-FV-h7D">
             <objects>
-                <viewController id="sxR-aB-StW" customClass="ChatSettingsViewController" customModule="EncryptedMessenger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sxR-aB-StW" customClass="ChatSettingsViewController" customModule="EncryptedMessengerIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ssw-el-dJB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -256,7 +297,7 @@
                                 <rect key="frame" x="0.0" y="152" width="414" height="661"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="56" id="yle-JO-Mzj" customClass="UserTableViewCell" customModule="EncryptedMessenger" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="56" id="yle-JO-Mzj" customClass="UserTableViewCell" customModule="EncryptedMessengerIOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yle-JO-Mzj" id="DmW-YG-nqg">
@@ -340,13 +381,13 @@
         <!--New Chat-->
         <scene sceneID="te1-Z2-ABd">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="fTN-D3-DYv" customClass="NewChatViewController" customModule="EncryptedMessenger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="fTN-D3-DYv" customClass="NewChatViewController" customModule="EncryptedMessengerIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uGW-ok-2ko">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rfS-sf-H9n">
-                                <rect key="frame" x="16" y="104" width="382" height="436.5"/>
+                                <rect key="frame" x="16" y="104" width="382" height="405.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Chat Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEY-yO-yvo">
                                         <rect key="frame" x="126" y="0.0" width="130" height="20.5"/>
@@ -360,15 +401,15 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XAq-cx-Cdt">
-                                        <rect key="frame" x="119" y="86.5" width="144" height="256"/>
+                                        <rect key="frame" x="123.5" y="86.5" width="135" height="225"/>
                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="144" id="5XI-nR-OoG"/>
-                                            <constraint firstAttribute="height" constant="256" id="GhY-b2-ybi"/>
+                                            <constraint firstAttribute="width" constant="135" id="5XI-nR-OoG"/>
+                                            <constraint firstAttribute="height" constant="225" id="GhY-b2-ybi"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="Xeq-Zo-qPp">
-                                        <rect key="frame" x="128.5" y="358.5" width="125" height="31"/>
+                                        <rect key="frame" x="128.5" y="327.5" width="125" height="31"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1t-qh-RYN">
                                                 <rect key="frame" x="0.0" y="0.0" width="46" height="31"/>
@@ -386,7 +427,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" distribution="fillEqually" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="W2q-q8-Wzh">
-                                        <rect key="frame" x="61.5" y="405.5" width="259" height="31"/>
+                                        <rect key="frame" x="109.5" y="374.5" width="163" height="31"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ed-VP-zhG">
                                                 <rect key="frame" x="0.0" y="0.0" width="67" height="31"/>
@@ -402,15 +443,6 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="Create"/>
                                                 <connections>
                                                     <action selector="createButtonWasPressed:" destination="fTN-D3-DYv" eventType="touchUpInside" id="Ajo-4m-aUR"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b19-Tc-Pwc">
-                                                <rect key="frame" x="192" y="0.0" width="67" height="31"/>
-                                                <color key="tintColor" systemColor="systemRedColor"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Close"/>
-                                                <connections>
-                                                    <action selector="closeButtonWasPressed:" destination="fTN-D3-DYv" eventType="touchUpInside" id="w57-ms-F4e"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -444,7 +476,7 @@
         <!--Draw Key View Controller-->
         <scene sceneID="18r-dB-iEp">
             <objects>
-                <viewController id="1du-Pp-MuU" customClass="DrawKeyViewController" customModule="EncryptedMessenger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1du-Pp-MuU" customClass="DrawKeyViewController" customModule="EncryptedMessengerIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aDP-Hd-Z47">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -454,29 +486,17 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ibi-gj-AfO">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="691"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="GaR-Bx-yuN"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="600" id="g4C-8l-cPC"/>
-                                        </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nYc-6K-3KI">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="691"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="600" id="JLf-wT-kFd"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="NO4-h2-S37"/>
-                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.89618708811649661" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="ibi-gj-AfO" secondAttribute="trailing" id="2q1-ol-mOv"/>
-                                    <constraint firstItem="nYc-6K-3KI" firstAttribute="centerX" secondItem="Uky-P9-wcv" secondAttribute="centerX" id="EbN-R3-uuz"/>
-                                    <constraint firstItem="nYc-6K-3KI" firstAttribute="centerY" secondItem="Uky-P9-wcv" secondAttribute="centerY" id="IaO-w3-BPY"/>
                                     <constraint firstItem="nYc-6K-3KI" firstAttribute="top" secondItem="Uky-P9-wcv" secondAttribute="top" id="Le9-7S-6GB"/>
                                     <constraint firstAttribute="trailing" secondItem="nYc-6K-3KI" secondAttribute="trailing" id="QsT-sh-qw7"/>
-                                    <constraint firstItem="ibi-gj-AfO" firstAttribute="centerY" secondItem="Uky-P9-wcv" secondAttribute="centerY" id="Ubv-Dn-ANm"/>
                                     <constraint firstAttribute="bottom" secondItem="ibi-gj-AfO" secondAttribute="bottom" id="afN-d1-NFR"/>
-                                    <constraint firstItem="ibi-gj-AfO" firstAttribute="centerX" secondItem="Uky-P9-wcv" secondAttribute="centerX" id="cQl-AY-kSg"/>
                                     <constraint firstItem="ibi-gj-AfO" firstAttribute="leading" secondItem="Uky-P9-wcv" secondAttribute="leading" id="d20-DG-8Qo"/>
                                     <constraint firstItem="ibi-gj-AfO" firstAttribute="top" secondItem="Uky-P9-wcv" secondAttribute="top" id="d8a-gz-ct1"/>
                                     <constraint firstAttribute="bottom" secondItem="nYc-6K-3KI" secondAttribute="bottom" id="dNF-GC-Bmi"/>
@@ -525,7 +545,7 @@
         <!--Draw Settings View Controller-->
         <scene sceneID="HGF-H7-QrF">
             <objects>
-                <viewController id="Co3-RS-Q8l" customClass="DrawSettingsViewController" customModule="EncryptedMessenger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Co3-RS-Q8l" customClass="DrawSettingsViewController" customModule="EncryptedMessengerIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C9A-19-ru8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -609,7 +629,7 @@
         <!--Login View Controller-->
         <scene sceneID="hqY-hn-LGk">
             <objects>
-                <viewController storyboardIdentifier="loginVC" id="Mry-o7-hTd" customClass="LoginViewController" customModule="EncryptedMessenger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" id="Mry-o7-hTd" customClass="LoginViewController" customModule="EncryptedMessengerIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="syO-7n-tGB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -719,6 +739,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3y0-XS-1iD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="906" y="338"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="WTw-Ml-khT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="62y-Z2-LpI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.fill" catalog="system" id="k7v-dd-pPv"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xue-2e-VPK">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="scrollEdgeAppearance" backgroundEffect="systemThickMaterial"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="dId-8E-NFy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hVf-CO-Zrl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="906" y="-317"/>
         </scene>
     </scenes>
     <resources>

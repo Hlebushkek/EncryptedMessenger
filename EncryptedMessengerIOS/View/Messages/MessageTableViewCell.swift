@@ -15,7 +15,7 @@ class MessageTableViewCell: UITableViewCell, MessageCell {
     
     private weak var message: Message?
     
-    public func setupCell(with message: Message) {
+    public func setup(with message: Message) {
         self.message = message
 
         userImageView.image = UIImage(systemName: "person.circle")

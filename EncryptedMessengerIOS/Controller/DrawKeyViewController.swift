@@ -89,8 +89,8 @@ class DrawKeyViewController: UIViewController {
         guard let drawedImage = mainImageView.image else {
             return
         }
-        
-        delegate?.didEndDrawingKey(image: drawedImage)
+        let scaledImg = drawedImage.scaleImage(targetSize: CGSize(width: 90, height: 150))
+        delegate?.didEndDrawingKey(image: scaledImg)
         self.navigationController?.popViewController(animated: true)
     }
 }

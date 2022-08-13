@@ -102,10 +102,6 @@ class NewChatViewController: UIViewController {
         }
     }
     
-    @IBAction func closeButtonWasPressed(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? DrawKeyViewController {
             vc.delegate = self

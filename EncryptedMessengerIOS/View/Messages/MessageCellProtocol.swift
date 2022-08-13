@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MessageCell: UITableViewCell {
-    func setupCell(with message: Message)
+    func setup(with message: Message)
 }

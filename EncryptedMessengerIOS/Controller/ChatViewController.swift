@@ -125,7 +125,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         let identifier = isUser ? "usermessageCell" : "messageCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? MessageCell else { return UITableViewCell() }
         
-        cell.setupCell(with: messages[indexPath.row])
+        cell.setup(with: messages[indexPath.row])
         cell.transform = CGAffineTransform(rotationAngle: (-.pi))
         return cell
     }
