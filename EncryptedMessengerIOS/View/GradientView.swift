@@ -5,14 +5,38 @@
 //  Created by Gleb Sobolevsky on 04.08.2022.
 //
 
-import UIKit
+#if os(iOS) || os(watchOS) || os(tvOS)
+    import UIKit
+    typealias View = UIView
+    typealias Color = UIColor
+#elseif os(macOS)
+    import AppKit
+    typealias View = NSView
+    typealias Color = NSColor
+#endif
 
-final class GradientView: UIView {
+final class GradientView: View {
     
+#if os(iOS) || os(watchOS) || os(tvOS)
     override class var layerClass: AnyClass { return CAGradientLayer.self }
-
-    var colors: [UIColor]? {
-        didSet { updateLayer() }
+#elseif os(macOS)
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        self.layer = CAGradientLayer()
+    }
+#endif
+    
+    var colors: [Color]? {
+        didSet { updateGradientLayer() }
     }
     
     var startPoint: CGPoint = CGPoint.zero {
@@ -27,7 +51,7 @@ final class GradientView: UIView {
         }
     }
 
-    private func updateLayer() {
+    private func updateGradientLayer() {
         let layer = self.layer as? CAGradientLayer
         layer?.colors = colors?.map({ $0.cgColor })
     }

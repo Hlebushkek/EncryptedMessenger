@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner">
+            <connections>
+                <outlet property="view" destination="c22-O7-iKe" id="KRi-kc-Lil"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="UserMessageTableCellView" customModule="EncryptedMessangerMac" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="37"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="8BJ-8A-wUZ" customClass="GradientView" customModule="EncryptedMessangerMac" customModuleProvider="target">
+                    <rect key="frame" x="387" y="4" width="89" height="29"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eeb-X7-h2n">
+                            <rect key="frame" x="6" y="4" width="77" height="21"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Message" id="c5w-Hj-Y4C">
+                                <font key="font" metaFont="system" size="18"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="eeb-X7-h2n" firstAttribute="top" secondItem="8BJ-8A-wUZ" secondAttribute="top" constant="4" id="47J-gx-7D2"/>
+                        <constraint firstItem="eeb-X7-h2n" firstAttribute="leading" secondItem="8BJ-8A-wUZ" secondAttribute="leading" constant="8" id="Y7I-8k-erq"/>
+                        <constraint firstAttribute="trailing" secondItem="eeb-X7-h2n" secondAttribute="trailing" constant="8" id="aax-5A-n6t"/>
+                        <constraint firstAttribute="bottom" secondItem="eeb-X7-h2n" secondAttribute="bottom" constant="4" id="vBq-DE-kGm"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="8BJ-8A-wUZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c22-O7-iKe" secondAttribute="leading" constant="40" id="Aaw-lX-koz"/>
+                <constraint firstAttribute="bottom" secondItem="8BJ-8A-wUZ" secondAttribute="bottom" constant="4" id="U4u-vC-yMc"/>
+                <constraint firstItem="8BJ-8A-wUZ" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="4" id="hZb-Wf-H4u"/>
+                <constraint firstAttribute="trailing" secondItem="8BJ-8A-wUZ" secondAttribute="trailing" constant="4" id="t6T-TW-NNe"/>
+            </constraints>
+            <connections>
+                <outlet property="messageContentView" destination="8BJ-8A-wUZ" id="TQt-QZ-GSh"/>
+                <outlet property="messageLabel" destination="eeb-X7-h2n" id="vCw-hs-eoS"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="190.5"/>
+        </customView>
+    </objects>
+</document>

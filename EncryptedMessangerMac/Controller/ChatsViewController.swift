@@ -11,6 +11,7 @@ class ChatsViewController: NSViewController {
     
     @IBOutlet weak var tableView: NSTableView!
     
+    private var splitVC: MainSplitViewController?
     var chats: [Chat] = []
 
     override func viewDidLoad() {
@@ -24,7 +25,8 @@ class ChatsViewController: NSViewController {
 //                UserDefaultsManager.user = user
 //            }
 //        }
-        
+        splitVC = self.parent as? MainSplitViewController
+
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -62,6 +64,13 @@ extension ChatsViewController: NSTableViewDelegate, NSTableViewDataSource {
        
         cell.setupCell(with: chats[row])
         return cell
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        if tableView.selectedRow >= 0 {
+            let chat = chats[tableView.selectedRow]
+            splitVC?.updateChat(chat: chat)
+        } //else { splitVC?.updateDetailedInfo(info: nil) }
     }
     
 }

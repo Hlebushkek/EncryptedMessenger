@@ -8,19 +8,18 @@
 import Cocoa
 
 class ChatTableViewCell: NSTableCellView {
-
     
     @IBOutlet weak var chatImage: NSImageView!
-    
     
     @IBOutlet weak var chatName: NSTextField!
     @IBOutlet weak var chatLastMessage: NSTextField!
     
     public func setupCell(with chat: Chat) {
-        chatImage.layer?.cornerRadius = chatImage.bounds.width / 2
         
         let config = NSImage.SymbolConfiguration(paletteColors: [.black, .red])
         chatImage.image = NSImage(systemSymbolName: "pencil.circle.fill", accessibilityDescription: nil)?.withSymbolConfiguration(config)
+        chatImage.layer?.contentsGravity = .resizeAspectFill
+        chatImage.layer?.cornerRadius = chatImage.bounds.width / 2
         
         chatName.stringValue = chat.name
         

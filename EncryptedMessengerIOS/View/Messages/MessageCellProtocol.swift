@@ -7,6 +7,14 @@
 
 import Foundation
 
-protocol MessageCell: UITableViewCell {
+#if os(iOS) || os(watchOS) || os(tvOS)
+    import UIKit
+    typealias TableViewCell = UITableViewCell
+#elseif os(macOS)
+    import AppKit
+    typealias TableViewCell = NSTableCellView
+#endif
+
+protocol MessageCell: TableViewCell {
     func setup(with message: Message)
 }
