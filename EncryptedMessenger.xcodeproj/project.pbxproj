@@ -33,6 +33,9 @@
 		BC8449D528A7F8D500D15B09 /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC8449D428A7F8D500D15B09 /* ProfileHeaderView.xib */; };
 		BC86F2FA28B2B9660059F7E5 /* ChatSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC86F2F928B2B9660059F7E5 /* ChatSettingsViewController.swift */; };
 		BCACD33E28B8100A000C58F4 /* UserTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCACD33D28B8100A000C58F4 /* UserTableCellView.swift */; };
+		BCACD35628B968E2000C58F4 /* MainNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCACD35528B968E2000C58F4 /* MainNavigationViewController.swift */; };
+		BCACD35928B96A13000C58F4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCACD35728B96A13000C58F4 /* ProfileViewController.swift */; };
+		BCACD35C28B96A2D000C58F4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCACD35B28B96A2D000C58F4 /* SettingsViewController.swift */; };
 		BCB151CC28A59A4D009899D7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB151CB28A59A4D009899D7 /* ChatViewController.swift */; };
 		BCBDE59B28A55C2100A9100C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBDE59A28A55C2100A9100C /* AppDelegate.swift */; };
 		BCBDE5A228A55C2300A9100C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCBDE5A028A55C2300A9100C /* Main.storyboard */; };
@@ -114,6 +117,9 @@
 		BC8449D428A7F8D500D15B09 /* ProfileHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderView.xib; sourceTree = "<group>"; };
 		BC86F2F928B2B9660059F7E5 /* ChatSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSettingsViewController.swift; sourceTree = "<group>"; };
 		BCACD33D28B8100A000C58F4 /* UserTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableCellView.swift; sourceTree = "<group>"; };
+		BCACD35528B968E2000C58F4 /* MainNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewController.swift; sourceTree = "<group>"; };
+		BCACD35728B96A13000C58F4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BCACD35B28B96A2D000C58F4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BCB151CB28A59A4D009899D7 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		BCBDE59828A55C2100A9100C /* EncryptedMessangerMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EncryptedMessangerMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBDE59A28A55C2100A9100C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -332,7 +338,10 @@
 			isa = PBXGroup;
 			children = (
 				BCD0608F28B0F0040099493B /* MainSplitViewController.swift */,
+				BCACD35528B968E2000C58F4 /* MainNavigationViewController.swift */,
+				BCACD35728B96A13000C58F4 /* ProfileViewController.swift */,
 				BCBDE5B228A560B000A9100C /* ChatsViewController.swift */,
+				BCACD35B28B96A2D000C58F4 /* SettingsViewController.swift */,
 				BC70A22728A9858E009A53BC /* ChatTabViewController.swift */,
 				BCB151CB28A59A4D009899D7 /* ChatViewController.swift */,
 				BC86F2F928B2B9660059F7E5 /* ChatSettingsViewController.swift */,
@@ -546,6 +555,7 @@
 				BCE6846828B42187009ACA5A /* ChatSettingsBigButtonCell.swift in Sources */,
 				BCD0609328B10B940099493B /* MessageTableCellView.swift in Sources */,
 				BCBDE5B328A560B000A9100C /* ChatsViewController.swift in Sources */,
+				BCACD35928B96A13000C58F4 /* ProfileViewController.swift in Sources */,
 				BCDF39CC28B6C1A00010E06D /* EditableProfileImageView.swift in Sources */,
 				BC262B0228A98CCC00A6E56C /* UserMessageTableCellView.swift in Sources */,
 				BCBDE5AA28A55CB500A9100C /* UserRequest.swift in Sources */,
@@ -554,6 +564,8 @@
 				BC70A22928A9858E009A53BC /* ChatTabViewController.swift in Sources */,
 				BCBDE5AD28A55CB500A9100C /* Chat.swift in Sources */,
 				BCBDE5AF28A55CB500A9100C /* ChatRequest.swift in Sources */,
+				BCACD35628B968E2000C58F4 /* MainNavigationViewController.swift in Sources */,
+				BCACD35C28B96A2D000C58F4 /* SettingsViewController.swift in Sources */,
 				BCBDE5A928A55CB500A9100C /* Message.swift in Sources */,
 				BCBDE59B28A55C2100A9100C /* AppDelegate.swift in Sources */,
 				BCBDE5B628A57E2B00A9100C /* ChatTableViewCell.swift in Sources */,

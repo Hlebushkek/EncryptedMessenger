@@ -27,7 +27,7 @@ class ChatsViewController: NSViewController {
 //                UserDefaultsManager.user = user
 //            }
 //        }
-        splitVC = self.parent as? MainSplitViewController
+        splitVC = self.parent?.parent as? MainSplitViewController
 
         tableView.delegate = self
         tableView.dataSource = self
