@@ -9,6 +9,8 @@ import Cocoa
 
 class ChatsViewController: NSViewController {
     
+    @IBOutlet weak var progressIndicator: NSProgressIndicator!
+    
     @IBOutlet weak var tableView: NSTableView!
     
     private var splitVC: MainSplitViewController?
@@ -36,6 +38,9 @@ class ChatsViewController: NSViewController {
     private func fetchChats() {
         guard let user = UserDefaultsManager.user else { return }
         
+        progressIndicator.startAnimation(self)
+        chats = UserDefaultsManager.cachedChats
+        
         UserRequest(userID: user.id).getChats(completion: { result in
             switch result {
             case .failure(let error):
@@ -46,6 +51,8 @@ class ChatsViewController: NSViewController {
                 DispatchQueue.main.async { [weak self] in
                     self?.chats = chats
                     self?.tableView.reloadData()
+                    self?.progressIndicator.stopAnimation(self)
+                    UserDefaultsManager.cachedChats = chats
                 }
             }
         })

@@ -15,8 +15,7 @@ class MainSplitViewController: NSSplitViewController {
     }
     
     public func updateChat(chat: Chat?) {
-        guard let chatVC = (self.splitViewItems[1].viewController as? ChatTabViewController)?.tabViewItems.first?.viewController as? ChatViewController else { return }
-        chatVC.chat = chat
+       (self.splitViewItems[1].viewController as? ChatTabViewController)?.present(with: chat)
     }
     
 }
