@@ -804,36 +804,19 @@
                     </view>
                     <connections>
                         <outlet property="navigationBar" destination="HCk-0S-oGM" id="E4Y-VU-o15"/>
-                        <segue destination="cDF-7U-Kma" kind="custom" id="Iqm-o7-yH2"/>
-                        <segue destination="bbf-za-Hd4" kind="custom" id="pGE-vA-RY2"/>
-                        <segue destination="vMU-eZ-UVU" kind="custom" id="iS5-s2-p24"/>
                     </connections>
                 </viewController>
                 <customObject id="h3d-2l-dD2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-142" y="1088"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Contacts View Controller-->
         <scene sceneID="Rz1-eA-JgK">
             <objects>
-                <viewController storyboardIdentifier="profileVC" id="cDF-7U-Kma" customClass="ProfileViewController" customModule="EncryptedMessangerMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="contactsVC" id="cDF-7U-Kma" customClass="ContactsViewController" customModule="EncryptedMessangerMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="5fo-Ie-NNw">
                         <rect key="frame" x="0.0" y="0.0" width="251" height="406"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v18-Ze-DLo">
-                                <rect key="frame" x="62" y="259.5" width="128" height="133"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="128" id="n4q-Ra-Llk"/>
-                                    <constraint firstAttribute="height" constant="128" id="ygI-OY-1BC"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="person.fill" catalog="system" id="ziQ-r1-LJo"/>
-                            </imageView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="v18-Ze-DLo" firstAttribute="top" secondItem="5fo-Ie-NNw" secondAttribute="top" constant="16" id="Dhq-D0-nId"/>
-                            <constraint firstItem="v18-Ze-DLo" firstAttribute="centerX" secondItem="5fo-Ie-NNw" secondAttribute="centerX" id="Mhz-9t-UAK"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="MnC-3H-qds" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -848,17 +831,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="249" height="406"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vow-l8-P3V">
+                                <rect key="frame" x="8" y="340" width="225" height="22"/>
+                                <subviews>
+                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eg5-In-voT">
+                                        <rect key="frame" x="0.0" y="0.0" width="192" height="22"/>
+                                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="biZ-Kq-9mJ">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </searchFieldCell>
+                                    </searchField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C9v-Di-jUz">
+                                        <rect key="frame" x="208" y="4.5" width="17.5" height="15"/>
+                                        <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" image="square.and.pencil" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="FKw-l4-cBX">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="72" horizontalPageScroll="10" verticalLineScroll="72" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhE-qI-lZA">
-                                <rect key="frame" x="0.0" y="48" width="249" height="266"/>
+                                <rect key="frame" x="0.0" y="48" width="249" height="288"/>
                                 <clipView key="contentView" drawsBackground="NO" id="xoo-lc-TD8">
-                                    <rect key="frame" x="0.0" y="0.0" width="249" height="266"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="249" height="288"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="72" viewBased="YES" id="k7j-gR-mfD">
-                                            <rect key="frame" x="0.0" y="0.0" width="249" height="266"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="249" height="288"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn width="217" minWidth="40" maxWidth="1000" id="nTw-5D-2Nr">
@@ -877,7 +888,7 @@
                                                             <rect key="frame" x="18" y="0.0" width="212" height="72"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YYj-v3-sR9">
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YYj-v3-sR9" customClass="ProfileImageView" customModule="EncryptedMessangerMac" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="1" width="64" height="70"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="64" id="2hW-DB-Nul"/>
@@ -930,7 +941,7 @@
                                                                             <textFieldCell key="cell" lineBreakMode="clipping" title="1" drawsBackground="YES" id="okw-dE-QJm">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -979,7 +990,7 @@
                                 </scroller>
                             </scrollView>
                             <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="POa-Zq-oxa">
-                                <rect key="frame" x="109" y="177" width="32" height="32"/>
+                                <rect key="frame" x="109" y="193" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="BE8-1d-zdU"/>
                                     <constraint firstAttribute="width" constant="32" id="okR-Uj-stv"/>
@@ -987,10 +998,13 @@
                             </progressIndicator>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="yhE-qI-lZA" firstAttribute="top" secondItem="g0a-lV-vfj" secondAttribute="top" id="7cp-D4-9MI"/>
+                            <constraint firstItem="vow-l8-P3V" firstAttribute="leading" secondItem="f7T-Uc-Nlr" secondAttribute="leading" constant="8" id="2Iz-Pe-tT2"/>
                             <constraint firstItem="POa-Zq-oxa" firstAttribute="centerX" secondItem="6dm-Gx-AYG" secondAttribute="centerX" id="Gle-Ep-1fO"/>
+                            <constraint firstItem="vow-l8-P3V" firstAttribute="top" secondItem="f7T-Uc-Nlr" secondAttribute="top" constant="4" id="JUu-Kr-qcc"/>
                             <constraint firstAttribute="trailing" secondItem="yhE-qI-lZA" secondAttribute="trailing" id="V31-13-AlZ"/>
                             <constraint firstItem="f7T-Uc-Nlr" firstAttribute="bottom" secondItem="yhE-qI-lZA" secondAttribute="bottom" constant="48" id="fo6-uv-2YJ"/>
+                            <constraint firstItem="f7T-Uc-Nlr" firstAttribute="trailing" secondItem="vow-l8-P3V" secondAttribute="trailing" constant="16" id="jBY-Oe-eik"/>
+                            <constraint firstItem="yhE-qI-lZA" firstAttribute="top" secondItem="vow-l8-P3V" secondAttribute="bottom" constant="4" id="mML-Kj-pSQ"/>
                             <constraint firstItem="yhE-qI-lZA" firstAttribute="leading" secondItem="6dm-Gx-AYG" secondAttribute="leading" id="n3q-Yu-nUE"/>
                             <constraint firstItem="POa-Zq-oxa" firstAttribute="centerY" secondItem="6dm-Gx-AYG" secondAttribute="centerY" id="rmo-oz-TqZ"/>
                         </constraints>
@@ -1025,10 +1039,6 @@
                             <constraint firstItem="COg-RS-Qoo" firstAttribute="leading" secondItem="HbW-4c-ebF" secondAttribute="leading" id="qlc-bf-G8q"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <segue destination="1wq-nh-wvc" kind="custom" id="nHD-6y-tYw"/>
-                        <segue destination="9nf-2M-mzI" kind="custom" id="0Tn-Kz-1QO"/>
-                    </connections>
                 </viewController>
                 <customObject id="yM3-YG-rpW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1044,7 +1054,61 @@
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="38a-Nz-hCA">
                                 <rect key="frame" x="0.0" y="295" width="450" height="48"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Mt-xD-qcO">
+                                        <rect key="frame" x="32" y="8" width="91" height="33"/>
+                                        <subviews>
+                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H3y-Ie-H9k" customClass="ProfileImageView" customModule="EncryptedMessangerMac" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="1.5" width="24" height="29"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="bqd-SR-CgW"/>
+                                                    <constraint firstAttribute="width" constant="24" id="s9A-F0-VSC"/>
+                                                </constraints>
+                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="person.fill" catalog="system" id="MSE-92-kqL"/>
+                                            </imageView>
+                                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q4w-Yz-evs">
+                                                <rect key="frame" x="32" y="0.0" width="59" height="33"/>
+                                                <subviews>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yII-hU-6om">
+                                                        <rect key="frame" x="-2" y="14" width="42" height="19"/>
+                                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="XPG-bN-YBJ">
+                                                            <font key="font" metaFont="system" size="15"/>
+                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LCl-ht-s1I">
+                                                        <rect key="frame" x="-2" y="0.0" width="63" height="14"/>
+                                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Chat Name" placeholderString="x members" id="DYb-gW-DUO">
+                                                            <font key="font" metaFont="smallSystem"/>
+                                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                </subviews>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
                                 <constraints>
+                                    <constraint firstItem="4Mt-xD-qcO" firstAttribute="leading" secondItem="38a-Nz-hCA" secondAttribute="leading" constant="32" id="3SW-Ql-s10"/>
+                                    <constraint firstItem="4Mt-xD-qcO" firstAttribute="centerY" secondItem="38a-Nz-hCA" secondAttribute="centerY" id="FLS-yR-SiC"/>
                                     <constraint firstAttribute="height" constant="48" id="r0D-VU-QpS"/>
                                 </constraints>
                             </customView>
@@ -1090,14 +1154,14 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Cwv-Q1-b4D">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="48"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0bm-hx-bUt">
-                                        <rect key="frame" x="419" y="17" width="15" height="15"/>
-                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="arrow.up.circle.fill" catalog="system" imagePosition="only" alignment="center" inset="2" id="4Lb-l5-7hX">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K8T-7b-iUA">
+                                        <rect key="frame" x="16" y="16" width="15" height="17"/>
+                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="paperclip" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="qrZ-XU-2QX">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </button>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J3c-DK-Zlb">
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J3c-DK-Zlb" customClass="MessageInputTextField" customModule="EncryptedMessangerMac" customModuleProvider="target">
                                         <rect key="frame" x="61" y="14" width="328" height="20"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" placeholderString="Write a message..." id="a5i-6s-mgI">
                                             <font key="font" metaFont="system" size="17"/>
@@ -1105,12 +1169,15 @@
                                             <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         </textFieldCell>
                                     </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K8T-7b-iUA">
-                                        <rect key="frame" x="16" y="16" width="15" height="17"/>
-                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="paperclip" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="qrZ-XU-2QX">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0bm-hx-bUt">
+                                        <rect key="frame" x="419" y="17" width="15" height="15"/>
+                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="arrow.up.circle.fill" catalog="system" imagePosition="only" alignment="center" inset="2" id="4Lb-l5-7hX">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="sendMessageButtonWasPressed:" target="1wq-nh-wvc" id="FHe-qo-WYh"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1139,7 +1206,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chatImageView" destination="H3y-Ie-H9k" id="Te1-JL-2Yx"/>
+                        <outlet property="chatMembersCount" destination="LCl-ht-s1I" id="0vh-pU-Moe"/>
+                        <outlet property="chatNameLabel" destination="yII-hU-6om" id="eLJ-7R-k1a"/>
+                        <outlet property="messageTextField" destination="J3c-DK-Zlb" id="RdY-5i-jnj"/>
                         <outlet property="navBarView" destination="38a-Nz-hCA" id="rpg-bO-aNn"/>
+                        <outlet property="sendMessageButton" destination="0bm-hx-bUt" id="o0f-OO-pPu"/>
                         <outlet property="tabBarView" destination="Cwv-Q1-b4D" id="6dV-mf-ZAr"/>
                         <outlet property="tableView" destination="AhW-sc-EQu" id="4P8-a2-EYg"/>
                     </connections>
@@ -1416,7 +1488,7 @@
                                     <rect key="frame" x="0.0" y="408" width="450" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="3W6-Xz-5Us">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="3W6-Xz-5Us">
                                     <rect key="frame" x="434" y="0.0" width="16" height="424"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1460,19 +1532,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="251" height="406"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OSt-43-c3G">
-                                <rect key="frame" x="88" y="186" width="75" height="32"/>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dU8-TD-Nqd">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Z4-ve-FxY" customClass="EditableProfileImageView" customModule="EncryptedMessangerMac" customModuleProvider="target">
+                                <rect key="frame" x="62" y="243.5" width="128" height="133"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="BuD-iv-lkz"/>
+                                    <constraint firstAttribute="width" constant="128" id="RR0-Mp-veX"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="person.fill" catalog="system" id="OlB-fR-cXV"/>
+                            </imageView>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BbE-4K-sjM">
+                                <rect key="frame" x="79" y="197" width="94" height="41"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="os7-0O-EP2">
+                                        <rect key="frame" x="-2" y="20" width="98" height="21"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="User Name" id="JrC-3a-spc">
+                                            <font key="font" metaFont="system" size="18"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9Bi-Js-sWK">
+                                        <rect key="frame" x="13" y="0.0" width="67" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="@usertag" id="5Z4-LY-w8w">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="OSt-43-c3G" firstAttribute="centerX" secondItem="4Py-9r-JfH" secondAttribute="centerX" id="fS9-Ej-zAa"/>
-                            <constraint firstItem="OSt-43-c3G" firstAttribute="centerY" secondItem="4Py-9r-JfH" secondAttribute="centerY" id="jLv-SE-VcE"/>
+                            <constraint firstItem="BbE-4K-sjM" firstAttribute="top" secondItem="1Z4-ve-FxY" secondAttribute="bottom" constant="8" id="0yz-zY-Jaw"/>
+                            <constraint firstItem="1Z4-ve-FxY" firstAttribute="centerX" secondItem="4Py-9r-JfH" secondAttribute="centerX" id="4sj-3y-tHG"/>
+                            <constraint firstItem="BbE-4K-sjM" firstAttribute="centerX" secondItem="4Py-9r-JfH" secondAttribute="centerX" id="TdZ-It-vgd"/>
+                            <constraint firstItem="1Z4-ve-FxY" firstAttribute="top" secondItem="4Py-9r-JfH" secondAttribute="top" constant="32" id="dmJ-12-UFc"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="userImageView" destination="1Z4-ve-FxY" id="MX0-ko-f4X"/>
+                        <outlet property="userNameLabel" destination="os7-0O-EP2" id="sMt-5e-7Xq"/>
+                        <outlet property="userTagLabel" destination="9Bi-Js-sWK" id="zEe-B7-jTW"/>
+                    </connections>
                 </viewController>
                 <customObject id="daq-RJ-42a" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1492,6 +1601,7 @@
         <image name="person.2.circle.fill" catalog="system" width="15" height="15"/>
         <image name="person.circle.fill" catalog="system" width="15" height="15"/>
         <image name="person.fill" catalog="system" width="14" height="14"/>
+        <image name="square.and.pencil" catalog="system" width="17" height="15"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -10,13 +10,21 @@ import Cocoa
 class ChatViewController: NSViewController {
     
     @IBOutlet weak var navBarView: NSView!
+    @IBOutlet weak var chatImageView: ProfileImageView!
+    @IBOutlet weak var chatNameLabel: NSTextField!
+    @IBOutlet weak var chatMembersCount: NSTextField!
+    
     @IBOutlet weak var tableView: NSTableView!
+    
     @IBOutlet weak var tabBarView: NSView!
+    @IBOutlet weak var messageTextField: MessageInputTextField!
+    @IBOutlet weak var sendMessageButton: NSButton!
     
     var user = UserDefaultsManager.user
     weak var chat: Chat? {
         didSet {
             fetchChatMessages()
+            updateNavBar()
         }
     }
     private var messages: [Message] = []
@@ -49,8 +57,9 @@ class ChatViewController: NSViewController {
                 print(errorMessage)
             case .success(let messages):
                 DispatchQueue.main.async { [weak self] in
-                    self?.messages = messages.reversed()
+                    self?.messages = messages
                     self?.tableView.reloadData()
+                    self?.tableView.scrollRowToVisible(self!.tableView.numberOfRows)
                 }
             }
         }
@@ -75,15 +84,50 @@ class ChatViewController: NSViewController {
         menu.addItem(NSMenuItem(title: "Edit", action: #selector(edit), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: "Delete", action: #selector(delete), keyEquivalent: ""))
         tableView.menu = menu
-        
-        tableView.scrollRowToVisible(tableView.numberOfRows - 1)
     }
     
     private func setupTabBarView() {
         tabBarView.wantsLayer = true
         tabBarView.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+        
+        messageTextField.messageInputDelegate = self
+        sendMessageButton.alphaValue = 0
     }
     
+    private func updateNavBar() {
+        guard let chat = chat else { return }
+        
+        if let imgStr = chat.imageBase64 {
+            chatImageView.image = Utilities.image(from: imgStr)
+        }
+        
+        chatNameLabel.stringValue = chat.name
+        chatMembersCount.stringValue = "x members"
+    }
+    
+    @IBAction func sendMessageButtonWasPressed(_ sender: Any) {
+        guard !messageTextField.stringValue.isEmpty else { return }
+        
+        let message = Message(content: messageTextField.stringValue, userID: user?.id, chatID: chat?.id)
+        ResourceRequest<Message>(resourcePath: "message").save(message) { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+                let errorMessage = "There was a problem saving the message"
+                print(errorMessage)
+            case .success(let message):
+                print("Message: \(message.content) was successfuly created")
+                DispatchQueue.main.async { [weak self] in
+                    self?.add(message)
+                }
+            }
+        }
+        
+        messageTextField.stringValue = ""
+    }
+}
+
+extension ChatViewController {
     @objc private func showChatSettings() {
         (self.parent as? ChatTabViewController)?.transitToSettings()
     }
@@ -93,7 +137,19 @@ class ChatViewController: NSViewController {
     }
     
     @objc private func delete() {
+        let row = tableView.clickedRow
+        guard row > 0 else { return }
         
+        if messages[row].userID == user?.id {
+            MessageRequest(messageID: messages[row].id).delete {
+                DispatchQueue.main.async { [weak self] in
+                    self?.tableView.removeRows(at: [row], withAnimation: .slideLeft)
+                    self?.messages.remove(at: row)
+                }
+            }
+        } else {
+            print("This is not your message, you can't delete it")
+        }
     }
 }
 
@@ -120,18 +176,43 @@ extension ChatViewController: NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-//        guard let tableView = notification.object as? NSTableView, let cell = tableView.view(atColumn: 0, row: tableView.selectedRow, makeIfNecessary: false) as? MessageCell else { return }
         
-        
+    }
+    
+    func add(_ message: Message) {
+        messages.append(message)
+        tableView.insertRows(at: [messages.count-1], withAnimation: .slideUp)
+        tableView.scroll(CGPoint(x: 0, y: tableView.frame.height))
     }
 }
 
 extension ChatViewController: MessagesWebSocketListener {
     func didRecievedMessage(_ message: Message) {
-//        if message.chatID == chat?.id && message.userID != user?.id {
-//            DispatchQueue.main.async { [weak self] in
-//                self?.add(message)
-//            }
-//        }
+        if message.chatID == chat?.id && message.userID != user?.id {
+            DispatchQueue.main.async { [weak self] in
+                self?.add(message)
+            }
+        }
+    }
+}
+
+extension ChatViewController: MessageInputTextFieldDelegate {
+    func userDidStartTyping() {
+        
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 0.5
+            sendMessageButton.animator().alphaValue = 1
+        })
+    }
+    
+    func userDidEndTyping() {
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 0.5
+            sendMessageButton.animator().alphaValue = 0
+        })
+    }
+    
+    func userDidTrySendMessage() {
+        sendMessageButtonWasPressed(self)
     }
 }

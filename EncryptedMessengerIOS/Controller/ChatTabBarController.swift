@@ -73,7 +73,7 @@ class ChatTabBarController: UITabBarController {
             case .success(let message):
                 print("Message: \(message.content) was successfuly created")
                 DispatchQueue.main.async { [weak self] in
-                    self?.ChatVC?.messageDidSent(message)
+                    self?.ChatVC?.messageDidSend(message)
                 }
             }
         }

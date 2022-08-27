@@ -69,7 +69,7 @@ class ChatViewController: UIViewController {
         }
     }
     
-    func messageDidSent(_ message: Message) {
+    func messageDidSend(_ message: Message) {
         add(message)
     }
     
