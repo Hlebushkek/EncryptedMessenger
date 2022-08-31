@@ -2,6 +2,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/swift,swiftpm,swiftpackagemanager
 # Edit at https://www.toptal.com/developers/gitignore?templates=swift,swiftpm,swiftpackagemanager
 
+### Credentials ###
+APIConfig.xcconfig
+
 ### MacOS ###
 .DS_Store
 
