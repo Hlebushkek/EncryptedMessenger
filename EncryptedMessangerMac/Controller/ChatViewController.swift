@@ -83,6 +83,7 @@ class ChatViewController: NSViewController {
         let menu = NSMenu()
         menu.addItem(NSMenuItem(title: "Edit", action: #selector(edit), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: "Delete", action: #selector(delete), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Translate", action: #selector(translate), keyEquivalent: ""))
         tableView.menu = menu
     }
     
@@ -150,6 +151,21 @@ extension ChatViewController {
         } else {
             print("This is not your message, you can't delete it")
         }
+    }
+    
+    @objc private func translate() {
+        let row = tableView.clickedRow
+        guard row > 0 else { return }
+        
+        if !messages[row].content.isEmpty {
+            showTranslation(for: messages[row])
+        }
+    }
+    
+    private func showTranslation(for message: Message) {
+        guard let translationVC = NSStoryboard.main?.instantiateController(withIdentifier: "translationVC") as? MessageTranslationViewController else { return }
+        translationVC.translate(message: message)
+        presentAsSheet(translationVC)
     }
 }
 

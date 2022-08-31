@@ -14,8 +14,7 @@ class ProfileImageView: NSImageView {
             self.layer = CALayer()
             self.layer?.contentsGravity = .resizeAspectFill
             self.layer?.contents = newValue
-            self.layer?.cornerRadius = self.frame.width / 2
-            self.wantsLayer = true
+            self.layer?.cornerRadius = min(self.frame.width, self.frame.height) / 2
             
             super.image = newValue
         }

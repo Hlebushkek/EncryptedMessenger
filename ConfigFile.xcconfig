@@ -9,3 +9,4 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 API_URL = encrypted-messanger.herokuapp.com
+TRANSLATION_URL = translation.googleapis.com/language/translate/v2

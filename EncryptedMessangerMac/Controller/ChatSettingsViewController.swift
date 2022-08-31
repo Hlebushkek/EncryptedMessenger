@@ -15,6 +15,7 @@ class ChatSettingsViewController: NSViewController {
     @IBOutlet weak var chatNameLabel: NSTextField!
     @IBOutlet weak var chatUsersCountLabel: NSTextField!
     
+    @IBOutlet weak var tableViewProgressIndicator: NSProgressIndicator!
     @IBOutlet weak var tableView: NSTableView!
     
     weak var chat: Chat?
@@ -29,9 +30,20 @@ class ChatSettingsViewController: NSViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        fetchUsers()
         
         chatImageView.delegate = self
+        
+        updatePresentation()
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        updatePresentation()
+    }
+    
+    private func updatePresentation() {
+        fetchUsers()
         
         if let imgBase = chat?.imageBase64 {
             chatImageView.image = Utilities.image(from: imgBase)
@@ -49,6 +61,8 @@ class ChatSettingsViewController: NSViewController {
     }
     
     private func fetchUsers() {
+        tableViewProgressIndicator.startAnimation(self)
+        
         ChatRequest(chatID: chat?.id).getChatUsers { result in
             switch result {
             case .failure(let error):
@@ -58,6 +72,7 @@ class ChatSettingsViewController: NSViewController {
                 DispatchQueue.main.async { [weak self] in
                     self?.users = users
                     self?.tableView.reloadData()
+                    self?.tableViewProgressIndicator.stopAnimation(self)
                 }
             }
         }
@@ -78,7 +93,7 @@ extension ChatSettingsViewController: NSTableViewDelegate, NSTableViewDataSource
 }
 
 extension ChatSettingsViewController: EditableProfileImageViewDelegate {
-    func newImageDidSet(imgPath: URL) {
+    func newImageDidSet(sender: EditableProfileImageView, imgPath: URL) {
         print(imgPath.path)
     }
 }

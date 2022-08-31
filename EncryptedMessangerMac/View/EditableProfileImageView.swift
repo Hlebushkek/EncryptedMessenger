@@ -15,14 +15,15 @@ class EditableProfileImageView: ProfileImageView {
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        
-        registerForDraggedTypes([.URL])
-        self.isEditable = true
+        commonInit()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
+        commonInit()
+    }
+    
+    private func commonInit() {
         registerForDraggedTypes([.URL])
         self.isEditable = true
     }
@@ -43,11 +44,11 @@ class EditableProfileImageView: ProfileImageView {
     
     override func draggingEnded(_ sender: NSDraggingInfo) {
         if let url = sender.draggingPasteboard.readObjects(forClasses: [NSURL.self], options: filteringOptions)?.first as? URL {
-            delegate?.newImageDidSet(imgPath: url)
+            delegate?.newImageDidSet(sender: self, imgPath: url)
         }
     }
 }
 
 protocol EditableProfileImageViewDelegate: AnyObject {
-    func newImageDidSet(imgPath: URL)
+    func newImageDidSet(sender: EditableProfileImageView, imgPath: URL)
 }

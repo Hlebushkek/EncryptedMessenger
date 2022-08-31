@@ -14,9 +14,10 @@ struct UserRequest {
         
         var resourceString = "https://\(Utilities.API_URL_STR)/api/user"
         if let userID = userID {
+            print(userID)
             resourceString.append("/\(userID)")
         }
-        
+        print(resourceString)
         guard let resourceURL = URL(string: resourceString) else {
             fatalError("Unable to createURL")
         }
@@ -52,6 +53,31 @@ struct UserRequest {
         dataTask.resume()
     }
     
+    func update(with updateData: User, completion: @escaping (Result<User, ResourceRequestError>) -> Void) {
+        do {
+            var urlRequest = URLRequest(url: resource)
+            urlRequest.httpMethod = "PUT"
+            urlRequest.httpBody = try JSONEncoder().encode(updateData)
+            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            print(urlRequest)
+            let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, _ in
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200, let jsonData = data else {
+                    completion(.failure(.noData))
+                    return
+                }
+                do {
+                    let user = try JSONDecoder().decode(User.self, from: jsonData)
+                    completion(.success(user))
+                } catch {
+                    completion(.failure(.decodingError))
+                }
+            }
+            dataTask.resume()
+        } catch {
+            completion(.failure(.encodingError))
+        }
+    }
+        
     func getChats(completion: @escaping (Result<[Chat], ResourceRequestError>) -> Void) {
         let url = resource.appendingPathComponent("chat")
         
