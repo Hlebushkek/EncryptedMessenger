@@ -9,7 +9,7 @@ import Foundation
 
 struct TranslationRequest {
     let baseURLStr = "https://\(Utilities.TRANSLATION_API_URL)"
-    let key = "AIzaSyBQkje9ZIr29TZ9wOHOaD0vuTAOR3ypXjg"
+    let key = "YOUR_API_KEY_HERE"
     
     func translate(from: TranslateLanguage, to: TranslateLanguage, text: String, completion: @escaping (Result<TranslationResponse, ResourceRequestError>) -> Void) {
         guard let requestURL = URL(string: baseURLStr + "?key=\(key)") else { return }
