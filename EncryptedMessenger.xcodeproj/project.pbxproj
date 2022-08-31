@@ -111,7 +111,7 @@
 		BC4C0C5428A559AC003A66DB /* KeyAnalizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyAnalizer.cpp; sourceTree = "<group>"; };
 		BC4C0C5528A559AC003A66DB /* KeyAnalizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyAnalizer.hpp; sourceTree = "<group>"; };
 		BC5BEB57289E975C0044857E /* ChatSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSettingsViewController.swift; sourceTree = "<group>"; };
-		BC642D5628A31FFD00DCB669 /* ConfigFile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ConfigFile.xcconfig; sourceTree = "<group>"; };
+		BC642D5628A31FFD00DCB669 /* APIConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = APIConfig.xcconfig; sourceTree = "<group>"; };
 		BC642D5728A3214E00DCB669 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		BC6E45372811E43800EE7342 /* EncryptedMessenger-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EncryptedMessenger-Bridging-Header.h"; sourceTree = "<group>"; };
 		BC6E453B2811E74600EE7342 /* KeyAnalizerWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = KeyAnalizerWrapper.mm; sourceTree = "<group>"; };
@@ -124,6 +124,7 @@
 		BC86F2F928B2B9660059F7E5 /* ChatSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSettingsViewController.swift; sourceTree = "<group>"; };
 		BC8A8AB328BFDCE600DC56F9 /* MessageTranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTranslationViewController.swift; sourceTree = "<group>"; };
 		BC8A8AB528BFFBD900DC56F9 /* TranslationContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationContainerView.swift; sourceTree = "<group>"; };
+		BC8A8AB728C006A200DC56F9 /* APIConfigExample.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = APIConfigExample.xcconfig; sourceTree = "<group>"; };
 		BCACD33D28B8100A000C58F4 /* UserTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableCellView.swift; sourceTree = "<group>"; };
 		BCACD35528B968E2000C58F4 /* MainNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewController.swift; sourceTree = "<group>"; };
 		BCACD35728B96A13000C58F4 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -411,7 +412,8 @@
 			isa = PBXGroup;
 			children = (
 				BC8449CE28A7DADA00D15B09 /* Shared */,
-				BC642D5628A31FFD00DCB669 /* ConfigFile.xcconfig */,
+				BC642D5628A31FFD00DCB669 /* APIConfig.xcconfig */,
+				BC8A8AB728C006A200DC56F9 /* APIConfigExample.xcconfig */,
 				BCEC2AD0280C2E4500F9A500 /* EncryptedMessengerIOS */,
 				BCBDE59928A55C2100A9100C /* EncryptedMessangerMac */,
 				BCEC2ACF280C2E4500F9A500 /* Products */,
@@ -733,7 +735,7 @@
 		};
 		BCEC2AE0280C2E4B00F9A500 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC642D5628A31FFD00DCB669 /* ConfigFile.xcconfig */;
+			baseConfigurationReference = BC642D5628A31FFD00DCB669 /* APIConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

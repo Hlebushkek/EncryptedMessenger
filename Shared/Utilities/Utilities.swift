@@ -40,4 +40,7 @@ class Utilities {
     static var TRANSLATION_API_URL: String {
         return try! Config.value(for: "TRANSLATION_URL")
     }
+    static var TRANSLATION_API_KEY: String {
+        return try! Config.value(for: "TRANSLATION_KEY")
+    }
 }

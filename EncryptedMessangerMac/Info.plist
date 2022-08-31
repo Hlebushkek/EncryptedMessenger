@@ -6,6 +6,8 @@
 	<string>$(API_URL)</string>
 	<key>TRANSLATION_URL</key>
 	<string>$(TRANSLATION_URL)</string>
+	<key>TRANSLATION_KEY</key>
+	<string>$(TRANSLATION_KEY)</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
