@@ -23,6 +23,8 @@
 		BC43585A289B551E00BF9B98 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC435859289B551E00BF9B98 /* GradientView.swift */; };
 		BC4C0C5328A558D5003A66DB /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4C0C5228A558D5003A66DB /* opencv2.framework */; };
 		BC4C0C5628A559AC003A66DB /* KeyAnalizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC4C0C5428A559AC003A66DB /* KeyAnalizer.cpp */; };
+		BC4C521728C15C3300F8C204 /* ChatFoldersSegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4C521628C15C3300F8C204 /* ChatFoldersSegmentViewController.swift */; };
+		BC4C521928C15CA500F8C204 /* ChatFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4C521828C15CA500F8C204 /* ChatFolder.swift */; };
 		BC5BEB58289E975C0044857E /* ChatSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5BEB57289E975C0044857E /* ChatSettingsViewController.swift */; };
 		BC642D5828A3214E00DCB669 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC642D5728A3214E00DCB669 /* Config.swift */; };
 		BC6E453C2811E74600EE7342 /* KeyAnalizerWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC6E453B2811E74600EE7342 /* KeyAnalizerWrapper.mm */; };
@@ -110,6 +112,8 @@
 		BC4C0C5228A558D5003A66DB /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		BC4C0C5428A559AC003A66DB /* KeyAnalizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyAnalizer.cpp; sourceTree = "<group>"; };
 		BC4C0C5528A559AC003A66DB /* KeyAnalizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyAnalizer.hpp; sourceTree = "<group>"; };
+		BC4C521628C15C3300F8C204 /* ChatFoldersSegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFoldersSegmentViewController.swift; sourceTree = "<group>"; };
+		BC4C521828C15CA500F8C204 /* ChatFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFolder.swift; sourceTree = "<group>"; };
 		BC5BEB57289E975C0044857E /* ChatSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSettingsViewController.swift; sourceTree = "<group>"; };
 		BC642D5628A31FFD00DCB669 /* APIConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = APIConfig.xcconfig; sourceTree = "<group>"; };
 		BC642D5728A3214E00DCB669 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -283,6 +287,7 @@
 				BCC90FC528972A81005CF0BF /* Chat.swift */,
 				BCC60AAE28983C630016BD8B /* User.swift */,
 				BCC90FC3289729F5005CF0BF /* Message.swift */,
+				BC4C521828C15CA500F8C204 /* ChatFolder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				BCB151CB28A59A4D009899D7 /* ChatViewController.swift */,
 				BC86F2F928B2B9660059F7E5 /* ChatSettingsViewController.swift */,
 				BC8A8AB328BFDCE600DC56F9 /* MessageTranslationViewController.swift */,
+				BC4C521628C15C3300F8C204 /* ChatFoldersSegmentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -570,6 +576,7 @@
 				BCBDE5AE28A55CB500A9100C /* ResourceRequest.swift in Sources */,
 				BC8A8AB628BFFBD900DC56F9 /* TranslationContainerView.swift in Sources */,
 				BC262B0328A98D2C00A6E56C /* MessageCellProtocol.swift in Sources */,
+				BC4C521728C15C3300F8C204 /* ChatFoldersSegmentViewController.swift in Sources */,
 				BCBDE5A828A55CB500A9100C /* User.swift in Sources */,
 				BCBDE5B728A57FCB00A9100C /* Utilities.swift in Sources */,
 				BCE6846828B42187009ACA5A /* ChatSettingsBigButtonCell.swift in Sources */,
@@ -585,6 +592,7 @@
 				BCBDE5AD28A55CB500A9100C /* Chat.swift in Sources */,
 				BCACD35E28BA855E000C58F4 /* MessageInputTextField.swift in Sources */,
 				BCBDE5AF28A55CB500A9100C /* ChatRequest.swift in Sources */,
+				BC4C521928C15CA500F8C204 /* ChatFolder.swift in Sources */,
 				BCACD37028BEBC6E000C58F4 /* TranslateRequest.swift in Sources */,
 				BCACD35628B968E2000C58F4 /* MainNavigationViewController.swift in Sources */,
 				BCACD35C28B96A2D000C58F4 /* SettingsViewController.swift in Sources */,

@@ -821,18 +821,18 @@
                 </viewController>
                 <customObject id="MnC-3H-qds" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-651" y="1555"/>
+            <point key="canvasLocation" x="-647" y="1555"/>
         </scene>
         <!--Chats View Controller-->
         <scene sceneID="E0s-2i-kvD">
             <objects>
                 <viewController storyboardIdentifier="chatsVC" id="bbf-za-Hd4" customClass="ChatsViewController" customModule="EncryptedMessangerMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="6dm-Gx-AYG">
+                    <view key="view" id="6dm-Gx-AYG">
                         <rect key="frame" x="0.0" y="0.0" width="249" height="406"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vow-l8-P3V">
-                                <rect key="frame" x="8" y="340" width="225" height="22"/>
+                                <rect key="frame" x="8" y="328" width="225" height="22"/>
                                 <subviews>
                                     <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eg5-In-voT">
                                         <rect key="frame" x="0.0" y="0.0" width="192" height="22"/>
@@ -859,14 +859,20 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="ri6-oL-sHS">
+                                <rect key="frame" x="8" y="232" width="233" height="88"/>
+                                <connections>
+                                    <segue destination="nhp-py-7dX" kind="embed" id="2bR-yg-Hkc"/>
+                                </connections>
+                            </containerView>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="72" horizontalPageScroll="10" verticalLineScroll="72" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhE-qI-lZA">
-                                <rect key="frame" x="0.0" y="48" width="249" height="288"/>
+                                <rect key="frame" x="0.0" y="48" width="249" height="176"/>
                                 <clipView key="contentView" drawsBackground="NO" id="xoo-lc-TD8">
-                                    <rect key="frame" x="0.0" y="0.0" width="249" height="288"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="249" height="176"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="72" viewBased="YES" id="k7j-gR-mfD">
-                                            <rect key="frame" x="0.0" y="0.0" width="249" height="288"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="249" height="176"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
                                             <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -981,7 +987,7 @@
                                     <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1Nr-th-6xf">
-                                    <rect key="frame" x="0.0" y="250" width="249" height="16"/>
+                                    <rect key="frame" x="0.0" y="263" width="241" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="nrd-Ub-w1k">
@@ -990,7 +996,7 @@
                                 </scroller>
                             </scrollView>
                             <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="POa-Zq-oxa">
-                                <rect key="frame" x="109" y="193" width="32" height="32"/>
+                                <rect key="frame" x="109" y="187" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="BE8-1d-zdU"/>
                                     <constraint firstAttribute="width" constant="32" id="okR-Uj-stv"/>
@@ -1004,9 +1010,12 @@
                             <constraint firstAttribute="trailing" secondItem="yhE-qI-lZA" secondAttribute="trailing" id="V31-13-AlZ"/>
                             <constraint firstItem="f7T-Uc-Nlr" firstAttribute="bottom" secondItem="yhE-qI-lZA" secondAttribute="bottom" constant="48" id="fo6-uv-2YJ"/>
                             <constraint firstItem="f7T-Uc-Nlr" firstAttribute="trailing" secondItem="vow-l8-P3V" secondAttribute="trailing" constant="16" id="jBY-Oe-eik"/>
-                            <constraint firstItem="yhE-qI-lZA" firstAttribute="top" secondItem="vow-l8-P3V" secondAttribute="bottom" constant="4" id="mML-Kj-pSQ"/>
                             <constraint firstItem="yhE-qI-lZA" firstAttribute="leading" secondItem="6dm-Gx-AYG" secondAttribute="leading" id="n3q-Yu-nUE"/>
+                            <constraint firstItem="f7T-Uc-Nlr" firstAttribute="trailing" secondItem="ri6-oL-sHS" secondAttribute="trailing" constant="8" id="oC7-C3-swz"/>
+                            <constraint firstItem="yhE-qI-lZA" firstAttribute="top" secondItem="ri6-oL-sHS" secondAttribute="bottom" constant="8" id="qDR-l2-PjD"/>
                             <constraint firstItem="POa-Zq-oxa" firstAttribute="centerY" secondItem="6dm-Gx-AYG" secondAttribute="centerY" id="rmo-oz-TqZ"/>
+                            <constraint firstItem="ri6-oL-sHS" firstAttribute="top" secondItem="vow-l8-P3V" secondAttribute="bottom" constant="8" id="wxd-rd-jas"/>
+                            <constraint firstItem="ri6-oL-sHS" firstAttribute="leading" secondItem="f7T-Uc-Nlr" secondAttribute="leading" constant="8" id="yDG-Ar-Pdd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="f7T-Uc-Nlr"/>
                         <viewLayoutGuide key="layoutMargins" id="g0a-lV-vfj"/>
@@ -1018,7 +1027,7 @@
                 </viewController>
                 <customObject id="y7j-Gp-HAk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-366" y="1555"/>
+            <point key="canvasLocation" x="-367" y="1555"/>
         </scene>
         <!--Chat Tab View Controller-->
         <scene sceneID="dWY-Qk-9Yv">
@@ -1253,7 +1262,7 @@
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uo1-S4-90y">
                                                 <rect key="frame" x="6" y="36" width="48" height="14"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Original:" id="CmN-pR-AyH">
-                                                    <font key="font" metaFont="system" size="11"/>
+                                                    <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -1298,7 +1307,7 @@
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kEu-ru-TG4">
                                                 <rect key="frame" x="6" y="36" width="63" height="14"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Translated:" id="16Y-Hv-BbF">
-                                                    <font key="font" metaFont="system" size="11"/>
+                                                    <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -1748,6 +1757,41 @@
                 <customObject id="daq-RJ-42a" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-89" y="1555"/>
+        </scene>
+        <!--Chat Folders Segment View Controller-->
+        <scene sceneID="pNl-fl-XLB">
+            <objects>
+                <viewController id="nhp-py-7dX" customClass="ChatFoldersSegmentViewController" customModule="EncryptedMessangerMac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="GUh-vo-Phg">
+                        <rect key="frame" x="0.0" y="0.0" width="218" height="22"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rz2-Hl-6GP">
+                                <rect key="frame" x="-2" y="-1" width="222" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="59C-Jh-Tt1">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="All" width="70" selected="YES"/>
+                                        <segment label="Folder1" width="70" tag="1"/>
+                                        <segment label="Folder2" width="70"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="rz2-Hl-6GP" firstAttribute="top" secondItem="GUh-vo-Phg" secondAttribute="top" id="U37-n1-qru"/>
+                            <constraint firstItem="rz2-Hl-6GP" firstAttribute="leading" secondItem="GUh-vo-Phg" secondAttribute="leading" id="d1R-VZ-Mid"/>
+                            <constraint firstAttribute="bottom" secondItem="rz2-Hl-6GP" secondAttribute="bottom" id="gFh-XM-fCE"/>
+                            <constraint firstAttribute="trailing" secondItem="rz2-Hl-6GP" secondAttribute="trailing" id="imY-Lh-kAQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="foldersSegmentControl" destination="rz2-Hl-6GP" id="mwE-Q4-9Zb"/>
+                    </connections>
+                </viewController>
+                <customObject id="yfG-Ry-QZ8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-368" y="1896"/>
         </scene>
     </scenes>
     <resources>

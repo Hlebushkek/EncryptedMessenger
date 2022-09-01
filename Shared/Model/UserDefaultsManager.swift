@@ -34,9 +34,22 @@ class UserDefaultsManager {
             return chats ?? []
         }
     }
+    
+    static var chatFolders: [ChatFolder] {
+        set {
+            let data = try? encoder.encode(newValue)
+            UserDefaults.standard.set(data, forKey: UserDefaultsKeys.ChatFolders.rawValue)
+        }
+        get {
+            guard let data = UserDefaults.standard.data(forKey: UserDefaultsKeys.ChatFolders.rawValue) else { return [] }
+            let chatFolders = try? decoder.decode([ChatFolder].self, from: data)
+            return chatFolders ?? []
+        }
+    }
 }
 
 enum UserDefaultsKeys: String {
     case User = "CurrentUser"
     case CachedChats = "CachedChats"
+    case ChatFolders = "ChatFolders"
 }
