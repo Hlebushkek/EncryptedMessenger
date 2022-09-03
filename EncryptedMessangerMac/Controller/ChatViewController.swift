@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class ChatViewController: NSViewController {
+class ChatViewController: NSViewController, AbstractViewController {
     
     @IBOutlet weak var navBarView: NSView!
     @IBOutlet weak var chatImageView: ProfileImageView!
@@ -19,6 +19,8 @@ class ChatViewController: NSViewController {
     @IBOutlet weak var tabBarView: NSView!
     @IBOutlet weak var messageTextField: MessageInputTextField!
     @IBOutlet weak var sendMessageButton: NSButton!
+    
+    private var theme = UserDefaultsManager.theme
     
     var user = UserDefaultsManager.user
     weak var chat: Chat? {
@@ -32,9 +34,7 @@ class ChatViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavBarView()
-        setupTableView()
-        setupTabBarView()
+        setupUI()
     }
     
     override func viewDidAppear() {
@@ -46,29 +46,15 @@ class ChatViewController: NSViewController {
         MessagesWebSocket.shared.removeListener(self)
     }
     
-    private func fetchChatMessages() {
-        guard let id = chat?.id else { return }
+    func setupUI() {
+        setupNavBarView()
+        setupTableView()
+        setupTabBarView()
         
-        ChatRequest(chatID: id).getChatMessages { result in
-            switch result {
-            case .failure(let error):
-                let errorMessage = "There was a problem getting the Chat Messages"
-                print(error)
-                print(errorMessage)
-            case .success(let messages):
-                DispatchQueue.main.async { [weak self] in
-                    self?.messages = messages
-                    self?.tableView.reloadData()
-                    self?.tableView.scrollRowToVisible(self!.tableView.numberOfRows)
-                }
-            }
-        }
+        applyTheme()
     }
     
     private func setupNavBarView() {
-        navBarView.wantsLayer = true
-        navBarView.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
-        
         let gesture = NSClickGestureRecognizer(target: self, action: #selector(showChatSettings))
         navBarView.addGestureRecognizer(gesture)
     }
@@ -88,9 +74,6 @@ class ChatViewController: NSViewController {
     }
     
     private func setupTabBarView() {
-        tabBarView.wantsLayer = true
-        tabBarView.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
-        
         messageTextField.messageInputDelegate = self
         sendMessageButton.alphaValue = 0
     }
@@ -104,6 +87,36 @@ class ChatViewController: NSViewController {
         
         chatNameLabel.stringValue = chat.name
         chatMembersCount.stringValue = "x members"
+    }
+    
+    func applyTheme() {
+        self.view.wantsLayer = true
+        self.view.layer?.backgroundColor = theme.backgroundColor.cgColor
+        
+        self.navBarView.wantsLayer = true
+        self.navBarView.layer?.backgroundColor = theme.secondaryBackgroundColor.cgColor
+        
+        self.tabBarView.wantsLayer = true
+        self.tabBarView.layer?.backgroundColor = theme.secondaryBackgroundColor.cgColor
+    }
+    
+    private func fetchChatMessages() {
+        guard let id = chat?.id else { return }
+        
+        ChatRequest(chatID: id).getChatMessages { result in
+            switch result {
+            case .failure(let error):
+                let errorMessage = "There was a problem getting the Chat Messages"
+                print(error)
+                print(errorMessage)
+            case .success(let messages):
+                DispatchQueue.main.async { [weak self] in
+                    self?.messages = messages
+                    self?.tableView.reloadData()
+                    self?.tableView.scrollRowToVisible(self!.tableView.numberOfRows)
+                }
+            }
+        }
     }
     
     @IBAction func sendMessageButtonWasPressed(_ sender: Any) {
@@ -155,7 +168,7 @@ extension ChatViewController {
     
     @objc private func translate() {
         let row = tableView.clickedRow
-        guard row > 0 else { return }
+        guard row >= 0 else { return }
         
         if !messages[row].content.isEmpty {
             showTranslation(for: messages[row])
@@ -183,6 +196,7 @@ extension ChatViewController: NSTableViewDelegate, NSTableViewDataSource {
         guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: identifier), owner: nil) as? MessageCell else { return nil }
         
         cell.setup(with: messages[row])
+        cell.apply(theme)
         
         return cell
     }

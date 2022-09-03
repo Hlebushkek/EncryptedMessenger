@@ -14,11 +14,14 @@ class UserMessageTableCellView: NSTableCellView, MessageCell {
 
     func setup(with message: Message) {
         messageLabel.stringValue = message.content
-        setupGradient()
     }
-
-    private func setupGradient() {
-        messageContentView.colors = [NSColor(named: "UserMessageFirst")!, NSColor(named: "UserMessageSecond")!]
+    
+    func apply(_ theme: Theme) {
+        setupGradient(with: theme.userMessageColors)
+    }
+    
+    func setupGradient(with colors: [Color]?) {
+        messageContentView.colors = colors
         messageContentView.startPoint = CGPoint(x: 1, y: 1)
         messageContentView.endPoint = CGPoint(x: 0, y: 0)
         messageContentView.layer?.cornerRadius = 8

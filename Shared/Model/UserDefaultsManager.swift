@@ -46,10 +46,23 @@ class UserDefaultsManager {
             return chatFolders ?? []
         }
     }
+    
+    static var theme: Theme {
+        set {
+            let data = try? encoder.encode(newValue)
+            UserDefaults.standard.set(data, forKey: UserDefaultsKeys.Theme.rawValue)
+        }
+        get {
+            guard let data = UserDefaults.standard.data(forKey: UserDefaultsKeys.Theme.rawValue) else { return Theme() }
+            let theme = try? decoder.decode(Theme.self, from: data)
+            return theme ?? Theme()
+        }
+    }
 }
 
 enum UserDefaultsKeys: String {
     case User = "CurrentUser"
     case CachedChats = "CachedChats"
     case ChatFolders = "ChatFolders"
+    case Theme = "Theme"
 }

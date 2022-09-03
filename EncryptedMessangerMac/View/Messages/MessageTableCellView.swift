@@ -23,15 +23,36 @@ class MessageTableCellView: NSTableCellView, MessageCell {
         userImageView.layer?.cornerRadius = userImageView.bounds.width / 2
 
         messageLabel.stringValue = message.content
-        
-        setupContetnView()
     }
     
-    private func setupContetnView() {
-        messageContentView.colors = [NSColor.systemGray, NSColor.systemGray]
+    func apply(_ theme: Theme) {
+        setupGradient(with: theme.messageColors)
+    }
+    
+    func setupGradient(with colors: [Color]?) {
+        
+        messageContentView.colors = colors
         messageContentView.startPoint = CGPoint(x: 1, y: 1)
         messageContentView.endPoint = CGPoint(x: 0, y: 0)
         messageContentView.layer?.cornerRadius = 8
+        
+        if colors == nil {
+            let view = NSView()
+            view.frame = messageContentView.bounds
+            view.wantsLayer = true
+            view.layer?.cornerRadius = 8
+            
+            var backgroundFilters = [CIFilter]()
+            if let blurFilter = CIFilter(name: "CIGaussianBlur") {
+                blurFilter.setDefaults()
+                blurFilter.setValue(16, forKey: kCIInputRadiusKey)
+                backgroundFilters = [blurFilter]
+            }
+            view.backgroundFilters = backgroundFilters
+            
+            self.messageContentView.colors = [Color.systemBlue, Color.systemRed]
+            messageContentView.addSubview(view, positioned: .below, relativeTo: messageContentView.subviews.first!)
+        }
     }
     
 }

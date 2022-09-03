@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC20807628C27A42004F790A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20807528C27A42004F790A /* Theme.swift */; };
+		BC20807728C27C61004F790A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20807528C27A42004F790A /* Theme.swift */; };
+		BC20807928C27D80004F790A /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20807828C27D80004F790A /* Typealias.swift */; };
+		BC20807A28C27D90004F790A /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20807828C27D80004F790A /* Typealias.swift */; };
+		BC20807D28C29381004F790A /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20807C28C29381004F790A /* AbstractViewController.swift */; };
+		BC20807E28C29D6C004F790A /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20807C28C29381004F790A /* AbstractViewController.swift */; };
+		BC20808728C2A6E1004F790A /* Color + ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20808628C2A6E1004F790A /* Color + ThemeColors.swift */; };
+		BC20808828C2A6EF004F790A /* Color + ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20808628C2A6E1004F790A /* Color + ThemeColors.swift */; };
+		BC20809328C2B013004F790A /* Color + HEX + RGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20809228C2B013004F790A /* Color + HEX + RGBA.swift */; };
+		BC20809428C2B013004F790A /* Color + HEX + RGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20809228C2B013004F790A /* Color + HEX + RGBA.swift */; };
 		BC22DF97280D5B2C00D9FBC3 /* DrawKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC22DF96280D5B2C00D9FBC3 /* DrawKeyViewController.swift */; };
 		BC262B0228A98CCC00A6E56C /* UserMessageTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC262B0128A98CCC00A6E56C /* UserMessageTableCellView.swift */; };
 		BC262B0328A98D2C00A6E56C /* MessageCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDF50A5289BFBEC0090C49C /* MessageCellProtocol.swift */; };
@@ -96,6 +106,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC20807528C27A42004F790A /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		BC20807828C27D80004F790A /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
+		BC20807C28C29381004F790A /* AbstractViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractViewController.swift; sourceTree = "<group>"; };
+		BC20808628C2A6E1004F790A /* Color + ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + ThemeColors.swift"; sourceTree = "<group>"; };
+		BC20809228C2B013004F790A /* Color + HEX + RGBA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + HEX + RGBA.swift"; sourceTree = "<group>"; };
 		BC22DF96280D5B2C00D9FBC3 /* DrawKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawKeyViewController.swift; sourceTree = "<group>"; };
 		BC262B0128A98CCC00A6E56C /* UserMessageTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessageTableCellView.swift; sourceTree = "<group>"; };
 		BC262B0428A9901200A6E56C /* UserMessageTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserMessageTableCellView.xib; sourceTree = "<group>"; };
@@ -206,7 +221,6 @@
 				BC8449D728A7FB3700D15B09 /* Chats */,
 				BC8449D828A7FB4400D15B09 /* Messages */,
 				BC8449D928A7FB7A00D15B09 /* ChatSettings */,
-				BC435859289B551E00BF9B98 /* GradientView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -226,6 +240,16 @@
 				BCC3EFE1280E10A700CDAA2B /* DrawSettingsViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		BC20807B28C27DFA004F790A /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				BC20807528C27A42004F790A /* Theme.swift */,
+				BC20808628C2A6E1004F790A /* Color + ThemeColors.swift */,
+				BC20809228C2B013004F790A /* Color + HEX + RGBA.swift */,
+			);
+			path = Themes;
 			sourceTree = "<group>";
 		};
 		BC23521028A54ADD00EC0B9B /* Frameworks */ = {
@@ -273,9 +297,15 @@
 		BC8449CE28A7DADA00D15B09 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BC20807828C27D80004F790A /* Typealias.swift */,
+				BC20807C28C29381004F790A /* AbstractViewController.swift */,
+				BCDF50A5289BFBEC0090C49C /* MessageCellProtocol.swift */,
+				BC20807B28C27DFA004F790A /* Themes */,
 				BC8449CF28A7DB0C00D15B09 /* Model */,
 				BC435846289AB66200BF9B98 /* Requests */,
 				BC435848289AB6C000BF9B98 /* Utilities */,
+				BC435859289B551E00BF9B98 /* GradientView.swift */,
+				BCEC2ADA280C2E4B00F9A500 /* Assets.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -315,7 +345,6 @@
 			isa = PBXGroup;
 			children = (
 				BCDF50A9289C73CF0090C49C /* MessageTextField.swift */,
-				BCDF50A5289BFBEC0090C49C /* MessageCellProtocol.swift */,
 				BC435855289B4FEB00BF9B98 /* MessageTableViewCell.swift */,
 				BC435856289B4FEB00BF9B98 /* MessageTableViewCell.xib */,
 				BCDF50A1289BF3990090C49C /* UserMessageTableViewCell.swift */,
@@ -447,7 +476,6 @@
 				BCEC2AD1280C2E4500F9A500 /* AppDelegate.swift */,
 				BCEC2AD3280C2E4500F9A500 /* SceneDelegate.swift */,
 				BCEC2AD7280C2E4500F9A500 /* Main.storyboard */,
-				BCEC2ADA280C2E4B00F9A500 /* Assets.xcassets */,
 				BCEC2ADC280C2E4B00F9A500 /* LaunchScreen.storyboard */,
 				BCEC2ADF280C2E4B00F9A500 /* Info.plist */,
 				BC6E45372811E43800EE7342 /* EncryptedMessenger-Bridging-Header.h */,
@@ -569,6 +597,7 @@
 				BCD0609028B0F0040099493B /* MainSplitViewController.swift in Sources */,
 				BCD0608E28B0EA3D0099493B /* GradientView.swift in Sources */,
 				BCB151CC28A59A4D009899D7 /* ChatViewController.swift in Sources */,
+				BC20807728C27C61004F790A /* Theme.swift in Sources */,
 				BCBDE5AC28A55CB500A9100C /* ResourceRequestError.swift in Sources */,
 				BCACD33E28B8100A000C58F4 /* UserTableCellView.swift in Sources */,
 				BCDF39CA28B6C1580010E06D /* ProfileImageView.swift in Sources */,
@@ -591,6 +620,7 @@
 				BC70A22928A9858E009A53BC /* ChatTabViewController.swift in Sources */,
 				BCBDE5AD28A55CB500A9100C /* Chat.swift in Sources */,
 				BCACD35E28BA855E000C58F4 /* MessageInputTextField.swift in Sources */,
+				BC20807E28C29D6C004F790A /* AbstractViewController.swift in Sources */,
 				BCBDE5AF28A55CB500A9100C /* ChatRequest.swift in Sources */,
 				BC4C521928C15CA500F8C204 /* ChatFolder.swift in Sources */,
 				BCACD37028BEBC6E000C58F4 /* TranslateRequest.swift in Sources */,
@@ -598,10 +628,13 @@
 				BCACD35C28B96A2D000C58F4 /* SettingsViewController.swift in Sources */,
 				BCBDE5A928A55CB500A9100C /* Message.swift in Sources */,
 				BCBDE59B28A55C2100A9100C /* AppDelegate.swift in Sources */,
+				BC20808828C2A6EF004F790A /* Color + ThemeColors.swift in Sources */,
 				BCBDE5B628A57E2B00A9100C /* ChatTableViewCell.swift in Sources */,
+				BC20809428C2B013004F790A /* Color + HEX + RGBA.swift in Sources */,
 				BCBDE5AB28A55CB500A9100C /* MessagesWebSocket.swift in Sources */,
 				BCACD36028BABC46000C58F4 /* MessageRequest.swift in Sources */,
 				BCE6846A28B42A5D009ACA5A /* ChatSettingsBigButton.swift in Sources */,
+				BC20807A28C27D90004F790A /* Typealias.swift in Sources */,
 				BCBDE5A728A55CA700A9100C /* UserDefaultsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,17 +649,22 @@
 				BCC90FC028972946005CF0BF /* ResourceRequest.swift in Sources */,
 				BC435852289AEDE500BF9B98 /* ChatTabBarController.swift in Sources */,
 				BCC60AB82899C87D0016BD8B /* UIViewControllerExt.swift in Sources */,
+				BC20808728C2A6E1004F790A /* Color + ThemeColors.swift in Sources */,
 				BCC60AB52899ADF70016BD8B /* NewChatViewController.swift in Sources */,
 				BC435857289B4FEB00BF9B98 /* MessageTableViewCell.swift in Sources */,
 				BCC90FC828972ABF005CF0BF /* Utilities.swift in Sources */,
 				BCC60AAF28983C630016BD8B /* User.swift in Sources */,
 				BCC3EFE2280E10A700CDAA2B /* DrawSettingsViewController.swift in Sources */,
 				BC6E453C2811E74600EE7342 /* KeyAnalizerWrapper.mm in Sources */,
+				BC20809328C2B013004F790A /* Color + HEX + RGBA.swift in Sources */,
+				BC20807628C27A42004F790A /* Theme.swift in Sources */,
 				BCDF50AA289C73CF0090C49C /* MessageTextField.swift in Sources */,
+				BC20807928C27D80004F790A /* Typealias.swift in Sources */,
 				BC43584A289AB6E300BF9B98 /* UserRequest.swift in Sources */,
 				BC4C0C5628A559AC003A66DB /* KeyAnalizer.cpp in Sources */,
 				BCCEC78128A2BC28005A7F10 /* UserTableViewCell.swift in Sources */,
 				BCC60AB1289931F10016BD8B /* ProfileViewController.swift in Sources */,
+				BC20807D28C29381004F790A /* AbstractViewController.swift in Sources */,
 				BC43584C289ABBE200BF9B98 /* ChatViewController.swift in Sources */,
 				BCEC2AE6280C371000F9A500 /* ChatsViewController.swift in Sources */,
 				BC43585A289B551E00BF9B98 /* GradientView.swift in Sources */,

@@ -7,12 +7,8 @@
 
 #if os(iOS) || os(watchOS) || os(tvOS)
     import UIKit
-    typealias View = UIView
-    typealias Color = UIColor
 #elseif os(macOS)
     import AppKit
-    typealias View = NSView
-    typealias Color = NSColor
 #endif
 
 final class GradientView: View {

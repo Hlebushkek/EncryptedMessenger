@@ -7,14 +7,6 @@
 
 import Foundation
 
-#if os(iOS) || os(watchOS) || os(tvOS)
-    import UIKit
-    typealias Image = UIImage
-#elseif os(macOS)
-    import AppKit
-    typealias Image = NSImage
-#endif
-
 class Utilities {
     static func base64String(from image: Image) -> String? {
 #if os(iOS) || os(watchOS) || os(tvOS)

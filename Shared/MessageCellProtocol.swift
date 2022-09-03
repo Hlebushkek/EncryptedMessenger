@@ -17,4 +17,6 @@ import Foundation
 
 protocol MessageCell: TableViewCell {
     func setup(with message: Message)
+    func apply(_ theme: Theme)
+    func setupGradient(with colors: [Color]?)
 }
