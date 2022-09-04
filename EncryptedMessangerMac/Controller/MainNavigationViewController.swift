@@ -9,6 +9,7 @@ import Cocoa
 
 class MainNavigationViewController: NSViewController {
 
+    @IBOutlet weak var containerView: NSView!
     @IBOutlet weak var navigationBar: NSStackView!
     
     let contactsVC: ContactsViewController? = NSStoryboard.main?.instantiateController(identifier: MainNavigationChilds.Contacts.rawValue)
@@ -39,22 +40,22 @@ class MainNavigationViewController: NSViewController {
     }
     
     func present(with user: User) {
-        if let profileVC = contactsVC {
-            view.addSubview(profileVC.view)
-            profileVC.view.autoresizingMask = [.width, .height]
-            profileVC.view.frame = self.view.bounds
-            presentedChildViewController = profileVC
+        if let chatsVC = chatsVC {
+            containerView.addSubview(chatsVC.view)
+            chatsVC.view.autoresizingMask = [.width, .height]
+            chatsVC.view.frame = containerView.bounds
+            presentedChildViewController = chatsVC
         }
     }
     
     @IBAction func presentProfile(_ sender: Any) {
-        guard let profileVC = contactsVC else { return }
+        guard let contactsVC = contactsVC else { return }
 
-        profileVC.view.autoresizingMask = [.width, .height]
-        profileVC.view.frame = self.view.bounds
+        contactsVC.view.autoresizingMask = [.width, .height]
+        contactsVC.view.frame = containerView.bounds
         
-        self.transition(from: presentedChildViewController, to: profileVC, options: [], completionHandler: { [weak self] in
-            self?.presentedChildViewController = profileVC
+        self.transition(from: presentedChildViewController, to: contactsVC, options: [], completionHandler: { [weak self] in
+            self?.presentedChildViewController = contactsVC
         })
     }
     
@@ -62,7 +63,7 @@ class MainNavigationViewController: NSViewController {
         guard let chatsVC = chatsVC else { return }
 
         chatsVC.view.autoresizingMask = [.width, .height]
-        chatsVC.view.frame = self.view.bounds
+        chatsVC.view.frame = containerView.bounds
         
         self.transition(from: presentedChildViewController, to: chatsVC, options: [], completionHandler: { [weak self] in
             self?.presentedChildViewController = chatsVC
@@ -73,7 +74,7 @@ class MainNavigationViewController: NSViewController {
         guard let settingsVC = settingsVC else { return }
 
         settingsVC.view.autoresizingMask = [.width, .height]
-        settingsVC.view.frame = self.view.bounds
+        settingsVC.view.frame = containerView.bounds
         
         self.transition(from: presentedChildViewController, to: settingsVC, options: [], completionHandler: { [weak self] in
             self?.presentedChildViewController = settingsVC

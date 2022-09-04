@@ -715,7 +715,7 @@
                 <customObject id="fEF-0X-YzD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <splitViewController id="o3h-AM-s8x" customClass="MainSplitViewController" customModule="EncryptedMessangerMac" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem id="7TV-c4-CnH"/>
+                        <splitViewItem canCollapse="YES" holdingPriority="260" behavior="sidebar" id="7TV-c4-CnH"/>
                         <splitViewItem id="bYR-ls-5s3"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="KWc-bi-ifk">
@@ -795,14 +795,22 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="KRT-YU-wtU">
+                                <rect key="frame" x="0.0" y="48" width="294" height="252"/>
+                            </containerView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="KRT-YU-wtU" firstAttribute="leading" secondItem="a9n-gN-NeD" secondAttribute="leading" id="20l-FQ-TF4"/>
                             <constraint firstAttribute="trailing" secondItem="HCk-0S-oGM" secondAttribute="trailing" id="6bZ-mD-mbP"/>
+                            <constraint firstAttribute="trailing" secondItem="KRT-YU-wtU" secondAttribute="trailing" id="HIo-yf-6kg"/>
+                            <constraint firstItem="KRT-YU-wtU" firstAttribute="top" secondItem="a9n-gN-NeD" secondAttribute="top" id="ViL-sy-q0d"/>
+                            <constraint firstItem="HCk-0S-oGM" firstAttribute="top" secondItem="KRT-YU-wtU" secondAttribute="bottom" id="cGa-EQ-eZx"/>
                             <constraint firstAttribute="bottom" secondItem="HCk-0S-oGM" secondAttribute="bottom" id="g6f-xR-wyj"/>
                             <constraint firstItem="HCk-0S-oGM" firstAttribute="leading" secondItem="a9n-gN-NeD" secondAttribute="leading" id="omd-dL-ch1"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="containerView" destination="KRT-YU-wtU" id="yGt-R8-piu"/>
                         <outlet property="navigationBar" destination="HCk-0S-oGM" id="E4Y-VU-o15"/>
                     </connections>
                 </viewController>
@@ -860,18 +868,18 @@
                                 </customSpacing>
                             </stackView>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="ri6-oL-sHS">
-                                <rect key="frame" x="8" y="232" width="233" height="88"/>
+                                <rect key="frame" x="8" y="184" width="233" height="136"/>
                                 <connections>
                                     <segue destination="nhp-py-7dX" kind="embed" id="2bR-yg-Hkc"/>
                                 </connections>
                             </containerView>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="72" horizontalPageScroll="10" verticalLineScroll="72" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhE-qI-lZA">
-                                <rect key="frame" x="0.0" y="48" width="249" height="176"/>
+                                <rect key="frame" x="0.0" y="0.0" width="249" height="176"/>
                                 <clipView key="contentView" drawsBackground="NO" id="xoo-lc-TD8">
                                     <rect key="frame" x="0.0" y="0.0" width="249" height="176"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="72" viewBased="YES" id="k7j-gR-mfD">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="inset" multipleSelection="NO" autosaveColumns="NO" rowHeight="72" viewBased="YES" id="k7j-gR-mfD">
                                             <rect key="frame" x="0.0" y="0.0" width="249" height="176"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
@@ -986,8 +994,8 @@
                                     </subviews>
                                     <nil key="backgroundColor"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1Nr-th-6xf">
-                                    <rect key="frame" x="0.0" y="263" width="241" height="16"/>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1Nr-th-6xf">
+                                    <rect key="frame" x="0.0" y="160" width="249" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="nrd-Ub-w1k">
@@ -1008,7 +1016,7 @@
                             <constraint firstItem="POa-Zq-oxa" firstAttribute="centerX" secondItem="6dm-Gx-AYG" secondAttribute="centerX" id="Gle-Ep-1fO"/>
                             <constraint firstItem="vow-l8-P3V" firstAttribute="top" secondItem="f7T-Uc-Nlr" secondAttribute="top" constant="4" id="JUu-Kr-qcc"/>
                             <constraint firstAttribute="trailing" secondItem="yhE-qI-lZA" secondAttribute="trailing" id="V31-13-AlZ"/>
-                            <constraint firstItem="f7T-Uc-Nlr" firstAttribute="bottom" secondItem="yhE-qI-lZA" secondAttribute="bottom" constant="48" id="fo6-uv-2YJ"/>
+                            <constraint firstItem="f7T-Uc-Nlr" firstAttribute="bottom" secondItem="yhE-qI-lZA" secondAttribute="bottom" id="fo6-uv-2YJ"/>
                             <constraint firstItem="f7T-Uc-Nlr" firstAttribute="trailing" secondItem="vow-l8-P3V" secondAttribute="trailing" constant="16" id="jBY-Oe-eik"/>
                             <constraint firstItem="yhE-qI-lZA" firstAttribute="leading" secondItem="6dm-Gx-AYG" secondAttribute="leading" id="n3q-Yu-nUE"/>
                             <constraint firstItem="f7T-Uc-Nlr" firstAttribute="trailing" secondItem="ri6-oL-sHS" secondAttribute="trailing" constant="8" id="oC7-C3-swz"/>
@@ -1127,7 +1135,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="247"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" tableStyle="fullWidth" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" usesAutomaticRowHeights="YES" viewBased="YES" id="AhW-sc-EQu">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" tableStyle="fullWidth" selectionHighlightStyle="none" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" usesAutomaticRowHeights="YES" viewBased="YES" id="AhW-sc-EQu">
                                             <rect key="frame" x="0.0" y="0.0" width="450" height="247"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
@@ -1756,7 +1764,7 @@
                 </viewController>
                 <customObject id="daq-RJ-42a" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-89" y="1555"/>
+            <point key="canvasLocation" x="-82" y="1555"/>
         </scene>
         <!--Chat Folders Segment View Controller-->
         <scene sceneID="pNl-fl-XLB">

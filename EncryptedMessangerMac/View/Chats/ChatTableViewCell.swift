@@ -27,4 +27,8 @@ class ChatTableViewCell: NSTableCellView {
         chatLastMessage.stringValue = "Last chat message"
     }
     
+    func apply(_ theme: Theme) {
+        
+    }
+    
 }

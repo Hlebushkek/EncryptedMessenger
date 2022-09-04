@@ -87,6 +87,7 @@
 		BCD0609128B109D10099493B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCEC2ADA280C2E4B00F9A500 /* Assets.xcassets */; };
 		BCD0609328B10B940099493B /* MessageTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD0609228B10B940099493B /* MessageTableCellView.swift */; };
 		BCD0609528B10B9F0099493B /* MessageTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCD0609428B10B9F0099493B /* MessageTableCellView.xib */; };
+		BCD97F1F28C3DDF900C7C242 /* ChatTableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD97F1E28C3DDF900C7C242 /* ChatTableRowView.swift */; };
 		BCDF39CA28B6C1580010E06D /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDF39C928B6C1580010E06D /* ProfileImageView.swift */; };
 		BCDF39CC28B6C1A00010E06D /* EditableProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDF39CB28B6C1A00010E06D /* EditableProfileImageView.swift */; };
 		BCDF50A3289BF3990090C49C /* UserMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDF50A1289BF3990090C49C /* UserMessageTableViewCell.swift */; };
@@ -175,6 +176,7 @@
 		BCD0609228B10B940099493B /* MessageTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableCellView.swift; sourceTree = "<group>"; };
 		BCD0609428B10B9F0099493B /* MessageTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableCellView.xib; sourceTree = "<group>"; };
 		BCD39B7828A3CAD300C4CC3B /* EncryptedMessengerIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EncryptedMessengerIOS.entitlements; sourceTree = "<group>"; };
+		BCD97F1E28C3DDF900C7C242 /* ChatTableRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableRowView.swift; sourceTree = "<group>"; };
 		BCDF39C928B6C1580010E06D /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		BCDF39CB28B6C1A00010E06D /* EditableProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableProfileImageView.swift; sourceTree = "<group>"; };
 		BCDF50A1289BF3990090C49C /* UserMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				BCBDE5B528A57E2B00A9100C /* ChatTableViewCell.swift */,
+				BCD97F1E28C3DDF900C7C242 /* ChatTableRowView.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				BCBDE59B28A55C2100A9100C /* AppDelegate.swift in Sources */,
 				BC20808828C2A6EF004F790A /* Color + ThemeColors.swift in Sources */,
 				BCBDE5B628A57E2B00A9100C /* ChatTableViewCell.swift in Sources */,
+				BCD97F1F28C3DDF900C7C242 /* ChatTableRowView.swift in Sources */,
 				BC20809428C2B013004F790A /* Color + HEX + RGBA.swift in Sources */,
 				BCBDE5AB28A55CB500A9100C /* MessagesWebSocket.swift in Sources */,
 				BCACD36028BABC46000C58F4 /* MessageRequest.swift in Sources */,

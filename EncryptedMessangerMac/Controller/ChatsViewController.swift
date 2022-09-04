@@ -7,13 +7,14 @@
 
 import Cocoa
 
-class ChatsViewController: NSViewController {
+class ChatsViewController: NSViewController, AbstractViewController {
     
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
-    
     @IBOutlet weak var tableView: NSTableView!
     
     private var splitVC: MainSplitViewController?
+    
+    var theme: Theme = UserDefaultsManager.theme
     var chats: [Chat] = []
 
     override func viewDidLoad() {
@@ -33,6 +34,14 @@ class ChatsViewController: NSViewController {
         tableView.dataSource = self
         
         fetchChats()
+    }
+    
+    func setupUI() {
+        applyTheme()
+    }
+    
+    func applyTheme() {
+        
     }
     
     private func fetchChats() {
@@ -70,7 +79,15 @@ extension ChatsViewController: NSTableViewDelegate, NSTableViewDataSource {
         guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "chatCell"), owner: self) as? ChatTableViewCell else { return nil }
        
         cell.setupCell(with: chats[row])
+        cell.apply(theme)
+        
         return cell
+    }
+    
+    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+        print("rowViewForRow")
+        if row == 0 { return ChatTableRowView() }
+        else { return NSTableRowView() }
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {

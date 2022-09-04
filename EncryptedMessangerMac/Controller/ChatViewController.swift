@@ -20,7 +20,7 @@ class ChatViewController: NSViewController, AbstractViewController {
     @IBOutlet weak var messageTextField: MessageInputTextField!
     @IBOutlet weak var sendMessageButton: NSButton!
     
-    private var theme = UserDefaultsManager.theme
+    var theme: Theme = UserDefaultsManager.theme
     
     var user = UserDefaultsManager.user
     weak var chat: Chat? {
